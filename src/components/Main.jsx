@@ -11,20 +11,24 @@ const Main = () => {
 
     const [appState,setAppState] = useState({
         loading:true,
-        post:null,
+        products:null,
     });
 
     useEffect(() => {
         axiosInstance.get().then( result => {
             const allProducts = result.data;
             console.log(allProducts);
+            setAppState({
+                loading:false,
+                products:allProducts,
+            });
         });
-    });
+    },[setAppState]);
 
     return (
         <React.Fragment>
             <Header/>
-            <Home/>
+            <Home appState={appState} />
             <Footer/>
         </React.Fragment>
     );
