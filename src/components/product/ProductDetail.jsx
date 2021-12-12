@@ -48,19 +48,20 @@ const ProductDetails = () => {
       
         <Container sx={{ bgcolor: '#cfe8fc', minHeight: '100vh',gap:'1rem',...flexCenter}}>
                 <Grid container sx={{...flexCenter,justifyContent:'flex-start',gap:'1rem',minHeight:'inherit'}}>
-                    <Grid item sm={12} md={5} sx={{background:'red'}}>
-                        <Card sx={{height:'inherit'}}>
+                    <Grid item xs={12} md={5} sx={{background:'transparent',p:'10px'}}>
+                        <Card sx={{background:'transparent',height:'inherit',width:'inherit'}}>
                             <CardMedia
+                            sx={{background:'transparent',width: '100%'}}
                             component="img"
                             alt={product.name}
                             height="50%"
                             image={"https://cdn11.bigcommerce.com/s-lpku7oc/images/stencil/1280x1280/products/7932/54428/8010GRYvividelctricblue__33962.1618350412.jpg?c=2"}>
 
                             </CardMedia>
-                            <CardActions>
-                                <ImageList sx={{ width: 500, height: '15%' }} cols={3} rowHeight={124}>
+                            <CardActions sx={{width: '100%'}}>
+                                <ImageList sx={{ width: 'inherit', height: '15%' }} cols={3} >
                                     {itemData.map((item) => (
-                                        <Button key={item.img}>
+                                        <Button key={item.img} sx={{maxHeight:"inherit",maxWidth:"100%",minWidth:'100%'}}>
                                         <ImageListItem >
                                         <img
                                             src={`${item.img}?w=124&h=124&fit=crop&auto=format`}
@@ -76,7 +77,7 @@ const ProductDetails = () => {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid item sm={12} md={6} sx={{display:'flex',flexDirection:'column',background:'gray',minHeight:'inherit'}}>
+                    <Grid item sm={12} md={6} sx={{display:'flex',flexDirection:'column',background:'transparent',minHeight:'inherit',p:'10px'}}>
                         <Typography component={'h1'} varient={'h1'}>
                             {product.name}
                         </Typography>
@@ -84,7 +85,7 @@ const ProductDetails = () => {
                         <Typography>{product.brand}</Typography>
                         <Typography>{product.color}</Typography>
                         <Typography>{product.unit_price}</Typography>
-                        <Typography varient='body' component={"p"} sx={{fontSize:'.5rem'}}>{product.details}</Typography>
+                        <Typography varient='body' component={"p"} sx={{fontSize:'.7rem',pb:'10px'}}>{product.details}</Typography>
                         <Button >Add to Cart</Button>
                     </Grid>
                 </Grid>
