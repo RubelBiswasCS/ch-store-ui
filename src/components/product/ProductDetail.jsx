@@ -47,8 +47,8 @@ const ProductDetails = () => {
     return (
       
         <Container sx={{ bgcolor: '#cfe8fc', minHeight: '100vh',gap:'1rem',...flexCenter}}>
-                <Grid container sx={{...flexCenter,justifyContent:'flex-start',gap:'1rem',minHeight:'inherit'}}>
-                    <Grid item xs={12} md={5} sx={{background:'transparent',p:'10px'}}>
+                <Grid container sx={{display:'flex',gap:'1rem',minHeight:'inherit'}}>
+                    <Grid item xs={12} sm={5} sx={{background:'transparent',p:'10px'}}>
                         <Card sx={{background:'transparent',height:'inherit',width:'inherit'}}>
                             <CardMedia
                             sx={{background:'transparent',width: '100%'}}
@@ -77,15 +77,15 @@ const ProductDetails = () => {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid item sm={12} md={6} sx={{display:'flex',flexDirection:'column',background:'transparent',minHeight:'inherit',p:'10px'}}>
+                    <Grid item sm={12} sm={6} sx={{display:'flex',flexDirection:'column',background:'transparent',minHeight:'inherit',p:'10px'}}>
                         <Typography component={'h1'} varient={'h1'}>
                             {product.name}
                         </Typography>
-                        <Typography component={'h6'}>{product.model}</Typography>
-                        <Typography>{product.brand}</Typography>
-                        <Typography>{product.color}</Typography>
-                        <Typography>{product.unit_price}</Typography>
-                        <Typography varient='body' component={"p"} sx={{fontSize:'.7rem',pb:'10px'}}>{product.details}</Typography>
+                        <Typography component={'h6'}><span>Model: </span>{product.model}</Typography>
+                        <Typography><span>Brand: </span>{product.brand}</Typography>
+                        <Typography><span>Color: </span>{product.color}</Typography>
+                        <Typography><span>Price: </span>{product.unit_price}</Typography>
+                        <Typography varient='body' component={"p"} sx={{fontSize:'.7rem',pb:'10px'}}><span style={{display:'block'}}>Details: </span>{product.details}</Typography>
                         <Button >Add to Cart</Button>
                     </Grid>
                 </Grid>
