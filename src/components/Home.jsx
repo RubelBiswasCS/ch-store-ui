@@ -5,8 +5,8 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Carousel from './Carousel';
-import ProductLoadingComponent from './ProductLoading';
-import Products from './Products';
+import ProductLoadingComponent from './product/ProductLoading';
+import Products from './product/Products';
 
 
 const ProductLoading = ProductLoadingComponent(Products);

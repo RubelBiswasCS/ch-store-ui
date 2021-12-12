@@ -7,6 +7,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+
 
 const Product = (props) => {
 
@@ -18,9 +20,9 @@ const Product = (props) => {
                 {/* End hero unit */}
                 <Grid container spacing={2}>
                     {products.map((product) => (
-                        <Grid item key={product.name} sx={{height:'auto'}} xs={12} sm={6} md={4}>
+                        <Grid item key={product.name} sx={{maxHeight:'70%'}} xs={12} sm={6} md={4}>
                             <Card
-                                sx={{ height: 'auto', display: 'flex', flexDirection: 'column' }}
+                                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                             >
                                 <CardMedia
                                 component="img"
@@ -32,17 +34,17 @@ const Product = (props) => {
                                 image="https://source.unsplash.com/random"
                                 alt="random"
                                 />
-                                <CardContent sx={{ flexGrow: 1, maxHeight:'40%',justifyContent:'center' }}>
-                                <Typography variant="h6" component="h6" sx={{display:'flex',justifyContent:'center',fontSize:".5rem",fontWeight: '700'}}>
-                                    Heading
-                                </Typography>
-                                <Typography variant="h6" component="h6" sx={{display:'flex',justifyContent:'center',fontSize:".75rem",fontWeight: '500'}}>
-                                    {'500'} $
-                                </Typography>
+                                <CardContent sx={{ flexGrow: 1, maxHeight:'30%',justifyContent:'center',padding:'5px' }}>
+                                    <Typography variant="h6" component="div" sx={{display:'flex',justifyContent:'center',fontSize:".5rem",fontWeight: '700',minHeight:'20%'}}>
+                                        {product.name}
+                                    </Typography>
+                                    <Typography variant="h6" component="h6" sx={{display:'flex',justifyContent:'center',fontSize:".75rem",fontWeight: '500'}}>
+                                        {product.unit_price} $
+                                    </Typography>
                                 </CardContent>
-                                <CardActions sx={{maxHeight:'10%',justifyContent:'center'}}>
-                                <Button size="small" >View</Button>
-                                <Button size="small" >Add to Cart</Button>
+                                <CardActions sx={{maxHeight:'10%',justifyContent:'center',padding:0}}>
+                                    <Link href={product.id}><Button size="small" >View</Button></Link>
+                                    <Button size="small" >Add to Cart</Button>
                                 </CardActions>
                             </Card>
                         </Grid>

@@ -5,7 +5,8 @@ import Home from "./Home";
 
 import axiosInstance from '../Axios';
 import { useState,useEffect } from "react";
-
+import { Routes, Route } from "react-router-dom";
+import ProductDetails from './product/ProductDetail';
 
 const Main = () => {
 
@@ -28,7 +29,10 @@ const Main = () => {
     return (
         <React.Fragment>
             <Header/>
-            <Home appState={appState} />
+            <Routes>
+                <Route path="" element={<Home appState={appState} />}></Route>
+                <Route path="/:id" element={<ProductDetails />} />
+            </Routes>
             <Footer/>
         </React.Fragment>
     );
