@@ -7,6 +7,7 @@ import axiosInstance from '../Axios';
 import { useState,useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProductDetails from './product/ProductDetail';
+import SignIn from "./auth/signin";
 
 const Main = () => {
 
@@ -32,6 +33,7 @@ const Main = () => {
             <Routes>
                 <Route path="" element={<Home appState={appState} />}></Route>
                 <Route path="/:id" element={<ProductDetails />} />
+                <Route path="/signin" element={<SignIn/>}/>
             </Routes>
             <Footer/>
         </React.Fragment>
