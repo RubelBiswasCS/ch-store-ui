@@ -13,10 +13,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import axiosInstance from '../../Axios';
+import {useNavigate} from 'react-router-dom';
 
 const theme = createTheme();
 
+
 export default function SignIn() {
+  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -25,6 +29,21 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    axiosInstance
+			.post(`token/`, {
+				username: data.get('email'),
+				password: data.get('password'),
+			})
+			.then((res) => {
+				localStorage.setItem('access_token', res.data.access);
+				localStorage.setItem('refresh_token', res.data.refresh);
+				axiosInstance.defaults.headers['Authorization'] =
+					'JWT ' + localStorage.getItem('access_token');
+				navigate('/');
+				//console.log(res);
+				//console.log(res.data);
+			});
   };
 
   return (
@@ -67,6 +86,7 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
+           
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
