@@ -4,8 +4,18 @@ import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
+import {useEffect} from 'react';
+import axiosInstance from '../Axios';
 
 export default function Cart(props) {
+    useEffect(() => {
+        axiosInstance.get('cart/').then( result => {
+            const cartData = result.data;
+            console.log("cart content :",cartData);
+            
+        });
+    },[]);
+
     let anchorEl=props.anchorEl;
     let open=props.open;
   return (

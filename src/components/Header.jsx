@@ -70,12 +70,17 @@ const Header = () => {
           </Typography>
          
 
-          <Box sx={{ flexGrow: 0,ml:'auto' }}>
+          <Box sx={{ flexGrow: 0,ml:'auto',display:'flex',gap:'15px' }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
+            <Box sx={{display:'flex'}} onClick={handleCartOpen}>
+              <ShoppingCartTwoToneIcon/>
+              <Typography>2</Typography>
+              
+            </Box>
             
             <Menu
               sx={{ mt: '45px' }}
@@ -99,14 +104,15 @@ const Header = () => {
                 </MenuItem>
               ))}
             </Menu>
+            
           </Box>
-          <Box onClick={handleCartOpen}>
-            <ShoppingCartTwoToneIcon/>
-          </Box>
-          <Cart anchorEl={anchorEl} open={open}/>
+          
+          
         </Toolbar>
+        <Cart anchorEl={anchorEl} open={open}/>
       </Container>
     </AppBar>
+    
   );
 };
 export default Header;
