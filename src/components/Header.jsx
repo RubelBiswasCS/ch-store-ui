@@ -12,6 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
+import Cart from './Cart';
+
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -32,6 +35,15 @@ const Header = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+
+
+  const handleCartOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen((prev) =>  !prev);
   };
 
   return (
@@ -88,6 +100,10 @@ const Header = () => {
               ))}
             </Menu>
           </Box>
+          <Box onClick={handleCartOpen}>
+            <ShoppingCartTwoToneIcon/>
+          </Box>
+          <Cart anchorEl={anchorEl} open={open}/>
         </Toolbar>
       </Container>
     </AppBar>
