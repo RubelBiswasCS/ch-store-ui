@@ -10,6 +10,7 @@ import ProductDetails from './product/ProductDetail';
 import SignIn from "./auth/signin";
 import Signout from "./auth/signout";
 
+import { Navigate } from 'react-router-dom';
 const Main = () => {
 
     const [appState,setAppState] = useState({
@@ -35,7 +36,7 @@ const Main = () => {
                 <Route path="" element={<Home appState={appState} />}></Route>
                 <Route path="/:id" element={<ProductDetails />} />
                 <Route path="/signin" element={<SignIn/>}/>
-                <Route path="/signout" component={<Signout/>} />
+                <Route path="/signout" element={<Signout/>} />
             </Routes>
             <Footer/>
         </React.Fragment>
