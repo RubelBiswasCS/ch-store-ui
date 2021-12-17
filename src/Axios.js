@@ -20,7 +20,8 @@ axiosInstance.interceptors.response.use(
 	},
 	async function (error) {
 		const originalRequest = error.config;
-
+		console.log(error.response.status);
+		console.log(originalRequest.url);
 		if (typeof error.response === 'undefined') {
 			alert(
 				'A server/network error occurred. ' +
@@ -29,15 +30,18 @@ axiosInstance.interceptors.response.use(
 			);
 			return Promise.reject(error);
 		}
-
+		//originalRequest.url === baseUrl + 'token/refresh/'
 		if (
 			error.response.status === 401 &&
-			originalRequest.url === baseUrl + 'token/refresh/'
+			originalRequest.url === '/token/refresh/' 
+			
 		) {
+			localStorage.removeItem('access_token');
+			localStorage.removeItem('refresh_token');
 			window.location.href = '/signin/';
 			return Promise.reject(error);
 		}
-
+		console.log("error here");
 		if (
 			error.response.data.code === 'token_not_valid' &&
 			error.response.status === 401 &&
@@ -47,7 +51,7 @@ axiosInstance.interceptors.response.use(
 
 			if (refreshToken) {
 				const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
-
+				//const tokenParts = JSON.parse(Buffer.from(refreshToken.split('.')[1],'base64'));
 				// exp date in token is expressed in seconds, while now() returns milliseconds:
 				const now = Math.ceil(Date.now() / 1000);
 				console.log(tokenParts.exp);
