@@ -12,7 +12,7 @@ import Link from '@mui/material/Link';
 
 const Product = (props) => {
 
-    const { products } = props;
+    const { products, addToCart } = props;
 	if (!products || products.length === 0) return <p>Can not find any products</p>;
 
 	return (
@@ -44,7 +44,7 @@ const Product = (props) => {
                                 </CardContent>
                                 <CardActions sx={{maxHeight:'10%',justifyContent:'center',padding:0}}>
                                     <Link href={product.id}><Button size="small" >View</Button></Link>
-                                    <Button size="small" >Add to Cart</Button>
+                                    <Button onClick={(e) => addToCart(e, product.id,5)} size="small">Add to Cart</Button>
                                 </CardActions>
                             </Card>
                         </Grid>

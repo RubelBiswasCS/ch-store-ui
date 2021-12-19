@@ -13,12 +13,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
-import Cart from './Cart';
+import Cart from "./cart/Cart";
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Header = () => {
+const Header = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -109,7 +109,7 @@ const Header = () => {
           
           
         </Toolbar>
-        <Cart anchorEl={anchorEl} open={open}/>
+        <Cart cartItems={props.cartItems} anchorEl={anchorEl} open={open}/>
       </Container>
     </AppBar>
     

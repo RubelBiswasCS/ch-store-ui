@@ -41,6 +41,14 @@ axiosInstance.interceptors.response.use(
 			window.location.href = '/signin/';
 			return Promise.reject(error);
 		}
+		//added on dec 19
+		if (error.response.status === 401){
+			const refreshToken = localStorage.getItem('refresh_token');
+			if (!refreshToken){
+				window.location.href = '/signin/';
+				return Promise.reject(error);
+			}
+		}
 		console.log("error here");
 		if (
 			error.response.data.code === 'token_not_valid' &&

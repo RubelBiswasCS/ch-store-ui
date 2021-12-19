@@ -34,7 +34,7 @@ export default function Home(props) {
         </Box>
         
       </main>
-      <ProductLoading isLoading={appState.loading} products={appState.products}/>
+      <ProductLoading addToCart={props.addToCart} isLoading={appState.loading} products={appState.products}/>
 
     </ThemeProvider>
   );
