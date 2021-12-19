@@ -11,7 +11,6 @@ import SignIn from "./auth/signin";
 import Signout from "./auth/signout";
 import TestCart from "./TestCart";
 
-import { Navigate } from 'react-router-dom';
 const Main = () => {
 
     const [appState,setAppState] = useState({
@@ -44,7 +43,7 @@ const Main = () => {
 
             setCartItems({
                 loading: false,
-                items: [...result.data],
+                items: [...cartData],
             });
             //console.log("cart content :",cartData);
             if (cartItems.loading === false){

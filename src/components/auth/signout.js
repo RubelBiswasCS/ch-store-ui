@@ -13,6 +13,7 @@ export default function Signout() {
 		localStorage.removeItem('refresh_token');
 		axiosInstance.defaults.headers['Authorization'] = null;
 		console.log('signed out');
+		console.log(response);
         navigate('/signin/')
 	});
 	return (<div>Logout</div>);

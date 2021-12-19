@@ -77,7 +77,7 @@ const ProductDetails = () => {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid item sm={12} sm={6} sx={{display:'flex',flexDirection:'column',background:'transparent',minHeight:'inherit',p:'10px'}}>
+                    <Grid item sm={12} md={6} sx={{display:'flex',flexDirection:'column',background:'transparent',minHeight:'inherit',p:'10px'}}>
                         <Typography component={'h1'} varient={'h1'}>
                             {product.name}
                         </Typography>

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import axiosInstance from '../Axios';
-import {useState,useEffect} from 'react';
+import {useEffect} from 'react';
 
 const theme = createTheme();
 
@@ -12,8 +12,7 @@ const theme = createTheme();
 
 
 export default function TestCart() {
-  
-  const [cartState,setCartState] = useState([]);
+
     useEffect( () => {
       axiosInstance
         .patch(`cart/129/`, {
