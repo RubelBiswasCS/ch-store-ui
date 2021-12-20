@@ -58,13 +58,36 @@ const Main = () => {
     const handleAddToCart = (e, product, qty) => {
 
         e.preventDefault();
+
         let cart_items = [...cartItems.items]
         //console.log("new cart items", cart_items, 'terger id',product)
         let index = cart_items.findIndex((item) => (item.id === product));
 
-        if (index != -1) {
+        if (index == -1) {
+            axiosInstance
+            .post('cart/', {
+                product: product,
+                quantity: qty,
+            })
+            .then(result => {
+                const cartData = result.data;
+                console.log("main", cartData, typeof (cartData));
+                setCartItems((prev) => ({
+                    ...prev,
+                    items: [...prev.items, result.data],
+                }))
+                //console.log("cart content :",cartData);
+                if (cartItems.loading === false) {
+                    //console.log("cart content :",cartItems)
+                }
+
+
+            });
             // console.log("index ",typeof(index))
             // console.log("all cart items",cart_items[index].id)
+            
+        }
+        else {
             let updated_qty = cart_items[index].quantity + 1
 
             console.log("item alread in cart")
@@ -81,27 +104,6 @@ const Main = () => {
                         items: [...cart_items]
                     }))
                 })
-        }
-        else {
-            axiosInstance
-                .post('cart/', {
-                    product: product,
-                    quantity: qty,
-                })
-                .then(result => {
-                    const cartData = result.data;
-                    console.log("main", cartData, typeof (cartData));
-                    setCartItems((prev) => ({
-                        ...prev,
-                        items: [...prev.items, result.data],
-                    }))
-                    //console.log("cart content :",cartData);
-                    if (cartItems.loading === false) {
-                        //console.log("cart content :",cartItems)
-                    }
-
-
-                });
         }
 
 
@@ -127,12 +129,12 @@ const Main = () => {
             })
     }
 
-    const handleDecrementItem = (e,product) => {
+    const handleDecrementItem = (e, product) => {
         e.preventDefault();
         let cart_items = [...cartItems.items]
         let index = cart_items.findIndex((item) => (item.id === product));
-        
-        if ( cart_items[index].quantity > 0 ) {
+
+        if (cart_items[index].quantity > 1) {
             let updated_qty = cart_items[index].quantity - 1
 
             axiosInstance
@@ -148,8 +150,24 @@ const Main = () => {
                         items: [...cart_items]
                     }))
                 })
-            }
-        
+        }
+        else {
+            axiosInstance
+                .delete('cart/' + product + '/')
+                .then(() => {
+
+                    let cart_items = [...cartItems.items]
+                    cart_items.splice(index, 1);
+                   
+                    setCartItems(state => ({
+                        ...state,
+                        items: [...cart_items],
+                    }));
+                    console.log('deleted item');
+
+                });
+        }
+
     }
 
     const handleRemoveCartItem = (e, product) => {
@@ -165,16 +183,10 @@ const Main = () => {
                 }
             })
             .then(() => {
-                
-                let cart_items = [...cartItems.items]
-                //console.log("new cart items", cart_items, 'terger id',product)
-                cart_items.find((item, i) => {
-                    if (item.id === product) {
-                        cart_items.splice(i, 1);
 
-                    }
-                }
-                )
+                let cart_items = [...cartItems.items]
+                let index = cart_items.findIndex((item) => (item.id === product));
+                cart_items.splice(index, 1);
                 setCartItems(state => ({
                     ...state,
                     items: [...cart_items],
