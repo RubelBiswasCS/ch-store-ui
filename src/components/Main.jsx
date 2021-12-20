@@ -172,7 +172,9 @@ const Main = () => {
 
     const handleRemoveCartItem = (e, product) => {
         e.preventDefault();
-        if (cartItems != []){
+        let cart_items = [...cartItems.items]
+        let index = cart_items.findIndex((item) => (item.id === product));
+        if (index != -1){
             axiosInstance
             .delete('cart/' + product + '/')
             .catch((error) => {
@@ -185,7 +187,6 @@ const Main = () => {
             .then(() => {
 
                 let cart_items = [...cartItems.items]
-                let index = cart_items.findIndex((item) => (item.id === product));
                 cart_items.splice(index, 1);
                 setCartItems(state => ({
                     ...state,
