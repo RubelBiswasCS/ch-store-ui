@@ -44,7 +44,7 @@ const Product = (props) => {
                                 </CardContent>
                                 <CardActions sx={{maxHeight:'10%',justifyContent:'center',padding:0}}>
                                     <Link href={product.id}><Button size="small" >View</Button></Link>
-                                    <Button onClick={(e) => addToCart(e, product.id,5)} size="small">Add to Cart</Button>
+                                    <Button onClick={(e) => addToCart(e, product.id,1)} size="small">Add to Cart</Button>
                                 </CardActions>
                             </Card>
                         </Grid>

@@ -107,7 +107,7 @@ const Header = (props) => {
           
           
         </Toolbar>
-        <Cart cartItems={props.cartItems} anchorEl={anchorEl} open={open}/>
+        <Cart cartItems={props.cartItems} removeCartItem={props.removeCartItem} anchorEl={anchorEl} open={open}/>
       </Container>
     </AppBar>
     
