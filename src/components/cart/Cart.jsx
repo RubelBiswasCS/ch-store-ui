@@ -47,9 +47,9 @@ export default function Cart(props) {
                         <Typography sx={{fontSize:'1em'}}>{item.name}</Typography>
                       </Box>
                       <Box  sx={{display:'flex',justifyContent:'center'}}>
-                        <Button sx={{fontSize:"1.2em",maxWidth:"20%",maxHeight:'10%',padding:0,backgroundColor:'pink'}}>-</Button>
+                        <Button onClick={(e) => props.decrementQty(e,item.id)} sx={{fontSize:"1.2em",maxWidth:"20%",maxHeight:'10%',padding:0,backgroundColor:'pink'}}>-</Button>
                         <Box sx={{width:'30%',display:"flex",justifyContent:"center",alignItems:'center'}}><Typography sx={{fontSize:'1em',textAlign:'center',width:'100%'}}>{item.quantity}</Typography></Box>
-                        <Button sx={{fontSize:"1.2em",maxWidth:"20%",maxHeight:'10%',padding:0,backgroundColor:'lightblue'}}>+</Button>
+                        <Button onClick={(e) => props.incrementQty(e,item.id)} sx={{fontSize:"1.2em",maxWidth:"20%",maxHeight:'10%',padding:0,backgroundColor:'lightblue'}}>+</Button>
                       </Box>
                     </Grid>
                     <Grid item sx={{display:'flex',width:'20%',justifyContent:'center',alignItems:'center',flexDirection:'column',border:"0px solid red"}}>

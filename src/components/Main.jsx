@@ -13,64 +13,74 @@ import TestCart from "./TestCart";
 
 const Main = () => {
 
-    const [appState,setAppState] = useState({
-        loading:true,
-        products:null,
+    const [appState, setAppState] = useState({
+        loading: true,
+        products: null,
     });
 
-    const [cartItems,setCartItems] = useState({
+    const [cartItems, setCartItems] = useState({
         loading: true,
         items: [],
     });
-    
-    useEffect(() => {
-       
-            axiosInstance.get().then( result => {
-                const allProducts = result.data;
-                console.log(allProducts);
-                setAppState({
-                    loading:false,
-                    products:allProducts,
-                });
-            });
-       
-    },[setAppState]);
 
     useEffect(() => {
-        if (localStorage.getItem('refresh_token')){
-        axiosInstance.get('cart/').then( result => {
-            const cartData = result.data;
 
-            setCartItems({
+        axiosInstance.get().then(result => {
+            const allProducts = result.data;
+            console.log(allProducts);
+            setAppState({
                 loading: false,
-                items: [...cartData],
+                products: allProducts,
             });
-            //console.log("cart content :",cartData);
-            if (cartItems.loading === false){
-                console.log("cart content :",cartItems)
-            }
-            
-            
         });
-    }
-    },[setCartItems]);
+
+    }, [setAppState]);
+
+    useEffect(() => {
+        if (localStorage.getItem('refresh_token')) {
+            axiosInstance.get('cart/').then(result => {
+                const cartData = result.data;
+
+                setCartItems({
+                    loading: false,
+                    items: [...cartData],
+                });
+                //console.log("cart content :",cartData);
+                if (cartItems.loading === false) {
+                    //console.log("cart content :",cartItems)
+                }
+
+
+            });
+        }
+    }, [setCartItems]);
 
     const handleAddToCart = (e, product, qty) => {
 
         e.preventDefault();
-        let itemExists = false;
         let cart_items = [...cartItems.items]
         //console.log("new cart items", cart_items, 'terger id',product)
-        cart_items.find((item, i) => {
-            if (item.id === product) {
-                // cart_items.splice(i, 1);
-                itemExists = true;
+        let index = cart_items.findIndex((item) => (item.id === product));
 
-            }
-        }
-        )
-        if (itemExists) {
+        if (index != -1) {
+            // console.log("index ",typeof(index))
+            // console.log("all cart items",cart_items[index].id)
+            let updated_qty = cart_items[index].quantity + 1
+
             console.log("item alread in cart")
+            axiosInstance
+                .patch('cart/' + product + "/", {
+                    quantity: updated_qty
+                })
+                .then(result => {
+                    console.log("patch result", result.data)
+                    cart_items[index].quantity = result.data.quantity
+
+                    setCartItems((prev) => ({
+                        ...prev,
+                        items: [...cart_items]
+                    }))
+                })
         }
         else {
             axiosInstance
@@ -96,9 +106,56 @@ const Main = () => {
 
 
     }
+    const handleIncrementItem = (e,product) => {
+        e.preventDefault();
+        let cart_items = [...cartItems.items]
+        let index = cart_items.findIndex((item) => (item.id === product));
+        let updated_qty = cart_items[index].quantity + 1
+
+        axiosInstance
+            .patch('cart/' + product + "/", {
+                quantity: updated_qty
+            })
+            .then(result => {
+                console.log("patch result", result.data)
+                cart_items[index].quantity = result.data.quantity
+
+                setCartItems((prev) => ({
+                    ...prev,
+                    items: [...cart_items]
+                }))
+            })
+    }
+
+    const handleDecrementItem = (e,product) => {
+        e.preventDefault();
+        let cart_items = [...cartItems.items]
+        let index = cart_items.findIndex((item) => (item.id === product));
+        
+        if ( cart_items[index].quantity > 0 ) {
+            let updated_qty = cart_items[index].quantity - 1
+
+            axiosInstance
+                .patch('cart/' + product + "/", {
+                    quantity: updated_qty
+                })
+                .then(result => {
+                    console.log("patch result", result.data)
+                    cart_items[index].quantity = result.data.quantity
+
+                    setCartItems((prev) => ({
+                        ...prev,
+                        items: [...cart_items]
+                    }))
+                })
+            }
+        
+    }
+
     const handleRemoveCartItem = (e, product) => {
         e.preventDefault();
-        axiosInstance
+        if (cartItems != []){
+            axiosInstance
             .delete('cart/' + product + '/')
             .catch((error) => {
                 if (error.response) {
@@ -108,6 +165,7 @@ const Main = () => {
                 }
             })
             .then(() => {
+                
                 let cart_items = [...cartItems.items]
                 //console.log("new cart items", cart_items, 'terger id',product)
                 cart_items.find((item, i) => {
@@ -125,12 +183,13 @@ const Main = () => {
                 console.log('deleted item');
 
             });
-
+        }
+        
     }
 
     return (
         <React.Fragment>
-            <Header cartItems={cartItems.items} removeCartItem={handleRemoveCartItem} />
+            <Header cartItems={cartItems.items} removeCartItem={handleRemoveCartItem} decrementQty={handleDecrementItem} incrementQty={handleIncrementItem}/>
             <Routes>
                 <Route path="" element={<Home addToCart={handleAddToCart} appState={appState} />}></Route>
                 <Route path="/:id" element={<ProductDetails />} />
