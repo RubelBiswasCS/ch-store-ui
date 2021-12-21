@@ -61,13 +61,26 @@ export default function Cart(props) {
   
                       </Box>
                     </Grid>
-                      
                   </Grid>
                 ))
                }
-              <Box sx={{display:'flex',justifyContent:'center'}}>
-                  <Button >Checkout</Button>
-              </Box>
+               <Grid container sp={2} sx={{display:'flex',fontSize:'.5em',borderBottom:'1px solid black',justifyContent:'center',alignItems:'center',gap:'5px',padding:'2px'}} className={'cartItem'} >
+                    <Grid item sx={{display:'flex',flexDirection:'column',width:'55%',justifyContent:'center',border:"0px solid red"}}>
+                      <Box>
+                        <Typography sx={{fontSize:'1em'}}>Sub-total:</Typography>
+                      </Box>
+                      <Box  sx={{display:'flex'}}>
+                        <Typography sx={{fontSize:'1em',width:'100%'}}>Shipping: </Typography>
+                      </Box>
+                      <Box>
+                        <Typography sx={{fontSize:'1em'}}>Total:</Typography>
+                      </Box>
+                    </Grid>
+
+                </Grid>
+                <Box sx={{display:'flex',justifyContent:'center',padding:"10px"}}>
+                    <Button sx={{display:'flex',justifyContent:'center',backgroundColor:'cyan',padding:'5%',paddingTop:'2%',paddingBottom:'1%',margin:'0',fontSize:'.5em'}} >Checkout</Button>
+                </Box>
             </Paper>
           </Fade>
         )}
