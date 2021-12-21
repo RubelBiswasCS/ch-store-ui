@@ -20,7 +20,7 @@ axiosInstance.interceptors.response.use(
 	},
 	async function (error) {
 		const originalRequest = error.config;
-		console.log(error.response.status);
+		console.log(error);
 		console.log(originalRequest.url);
 		if (typeof error.response === 'undefined') {
 			alert(

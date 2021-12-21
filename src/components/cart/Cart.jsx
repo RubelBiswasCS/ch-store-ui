@@ -65,7 +65,9 @@ export default function Cart(props) {
                   </Grid>
                 ))
                }
-              
+              <Box sx={{display:'flex',justifyContent:'center'}}>
+                  <Button >Checkout</Button>
+              </Box>
             </Paper>
           </Fade>
         )}

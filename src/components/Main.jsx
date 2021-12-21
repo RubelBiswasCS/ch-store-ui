@@ -47,7 +47,7 @@ const Main = () => {
                 });
                 //console.log("cart content :",cartData);
                 if (cartItems.loading === false) {
-                    //console.log("cart content :",cartItems)
+                   
                 }
 
 
@@ -76,15 +76,12 @@ const Main = () => {
                     ...prev,
                     items: [...prev.items, result.data],
                 }))
-                //console.log("cart content :",cartData);
+              
                 if (cartItems.loading === false) {
-                    //console.log("cart content :",cartItems)
+                   
                 }
-
-
             });
-            // console.log("index ",typeof(index))
-            // console.log("all cart items",cart_items[index].id)
+
             
         }
         else {
