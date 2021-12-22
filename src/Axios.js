@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:8000/api/";
+const baseUrl = "https://ch-store.netlify.app/api/";
 
 const axiosInstance = axios.create({
     baseURL : baseUrl,
