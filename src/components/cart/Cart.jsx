@@ -14,6 +14,12 @@ import "./Cart.scss";
 export default function Cart(props) {
   
     const cartItems = props.cartItems;
+    let total = 0
+    if (cartItems.length > 0){
+      total = cartItems.reduce( (pre,current) => (pre+(current.unit_price*current.quantity)),0.0).toFixed(2);
+      
+    }
+    console.log("total: ",total )
     console.log(cartItems);
     console.log(typeof(cartItems));
     let anchorEl=props.anchorEl;
@@ -26,6 +32,7 @@ export default function Cart(props) {
             <Paper sx={{width:{sm:"90vw",md:'20vw'}}}>
               <Typography sx={{ p: 2,display:"flex",justifyContent:"center",borderBottom:"1px solid blue" }}>Cart</Typography>
               {
+                
                 cartItems.map( item => (
                   <Grid container sp={2} sx={{display:'flex',fontSize:'.5em',borderBottom:'1px solid black',justifyContent:'center',alignItems:'center',gap:'5px',padding:'2px'}} className={'cartItem'} key={item.name}>
                     <Grid item sx={{width:"20%",justifyContent:'center',padding:'2px'}}>
@@ -63,24 +70,32 @@ export default function Cart(props) {
                     </Grid>
                   </Grid>
                 ))
+
+              
                }
-               <Grid container sp={2} sx={{display:'flex',fontSize:'.5em',borderBottom:'1px solid black',justifyContent:'center',alignItems:'center',gap:'5px',padding:'2px'}} className={'cartItem'} >
-                    <Grid item sx={{display:'flex',flexDirection:'column',width:'55%',justifyContent:'center',border:"0px solid red"}}>
+              {(cartItems.length != 0)?
+                <Box>
+                  <Grid container sp={2} sx={{ display: 'flex', fontSize: '.5em', borderBottom: '1px solid black', justifyContent: 'center', alignItems: 'center', gap: '5px', padding: '2px' }} className={'cartItem'} >
+                    <Grid item sx={{ display: 'flex', flexDirection: 'column', width: '55%', justifyContent: 'center', border: "0px solid red" }}>
                       <Box>
-                        <Typography sx={{fontSize:'1em'}}>Sub-total:</Typography>
+                        <Typography sx={{ fontSize: '1em' }}>Sub-total: {total} $</Typography>
                       </Box>
-                      <Box  sx={{display:'flex'}}>
-                        <Typography sx={{fontSize:'1em',width:'100%'}}>Shipping: </Typography>
+                      <Box sx={{ display: 'flex' }}>
+                        <Typography sx={{ fontSize: '1em', width: '100%' }}>Shipping: <span>0.00</span> $</Typography>
                       </Box>
                       <Box>
-                        <Typography sx={{fontSize:'1em'}}>Total:</Typography>
+                        <Typography sx={{ fontSize: '1em' }}>Total: {total} $</Typography>
                       </Box>
                     </Grid>
-
-                </Grid>
-                <Box sx={{display:'flex',justifyContent:'center',padding:"10px"}}>
-                    <Button sx={{display:'flex',justifyContent:'center',backgroundColor:'cyan',padding:'5%',paddingTop:'2%',paddingBottom:'1%',margin:'0',fontSize:'.5em'}} >Checkout</Button>
+                  </Grid>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', padding: "10px" }}>
+                    <Button sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'cyan', padding: '5%', paddingTop: '2%', paddingBottom: '1%', margin: '0', fontSize: '.5em' }} >Checkout</Button>
+                  </Box>
                 </Box>
+              :<Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', border: "0px solid red",minHeight:'50px' }}>
+                <Typography sx={{ display: 'flex', justifyContent: 'center',alignItems:'center'}}>Cart is empty</Typography>
+              </Box>
+            }
             </Paper>
           </Fade>
         )}
