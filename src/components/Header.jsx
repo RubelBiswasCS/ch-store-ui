@@ -18,6 +18,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Header = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  console.log(anchorElNav);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -70,7 +71,7 @@ const Header = (props) => {
 
           <Box sx={{ flexGrow: 0,ml:'auto',display:'flex',gap:'15px' }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu}  sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
@@ -95,6 +96,8 @@ const Header = (props) => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
+              //add dec 23
+              onClick={handleOpenNavMenu}
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>

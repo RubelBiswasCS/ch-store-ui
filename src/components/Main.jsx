@@ -45,11 +45,7 @@ const Main = () => {
                     loading: false,
                     items: [...cartData],
                 });
-                //console.log("cart content :",cartData);
-                if (cartItems.loading === false) {
-                   
-                }
-
+                //console.log("cart content :",cartData)
 
             });
         }
@@ -63,7 +59,7 @@ const Main = () => {
         //console.log("new cart items", cart_items, 'terger id',product)
         let index = cart_items.findIndex((item) => (item.id === product));
 
-        if (index == -1) {
+        if (index === -1) {
             axiosInstance
             .post('cart/', {
                 product: product,
@@ -171,7 +167,7 @@ const Main = () => {
         e.preventDefault();
         let cart_items = [...cartItems.items]
         let index = cart_items.findIndex((item) => (item.id === product));
-        if (index != -1){
+        if (index !== -1){
             axiosInstance
             .delete('cart/' + product + '/')
             .catch((error) => {

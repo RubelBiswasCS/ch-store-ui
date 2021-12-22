@@ -37,12 +37,14 @@ const ProductDetails = () => {
         }
     ];
     useEffect(() => {
-        axiosInstance.get('product/'+id+'/').then((result) => {
+        axiosInstance
+        .get('product/'+id+'/')
+        .then((result) => {
             setProduct(result.data);
-            console.log(product.name);
+            //console.log(product.name);
             
         });
-    },[setProduct]);
+    },[setProduct,id]);
 
     return (
       

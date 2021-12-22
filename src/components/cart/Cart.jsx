@@ -73,7 +73,7 @@ export default function Cart(props) {
 
               
                }
-              {(cartItems.length != 0)?
+              {(cartItems.length !== 0)?
                 <Box>
                   <Grid container sp={2} sx={{ display: 'flex', fontSize: '.5em', borderBottom: '1px solid black', justifyContent: 'center', alignItems: 'center', gap: '5px', padding: '2px' }} className={'cartItem'} >
                     <Grid item sx={{ display: 'flex', flexDirection: 'column', width: '55%', justifyContent: 'center', border: "0px solid red" }}>
