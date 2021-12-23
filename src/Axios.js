@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://ch-store.netlify.app/api/";
+const baseUrl = "https://travisswiss.pythonanywhere.com/api/";
 
 const axiosInstance = axios.create({
     baseURL : baseUrl,
