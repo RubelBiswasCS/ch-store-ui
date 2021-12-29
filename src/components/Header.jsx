@@ -55,7 +55,16 @@ const Header = (props) => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            LOGO
+          <Box
+            component="img"
+            sx={{
+              height: '40px',
+              width: 'inherit',
+        
+            }}
+            alt="Logo"
+            src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-store-bee-and-honey-inipagistudio-mixed-inipagistudio.png"
+          />
           </Typography>
 
          
@@ -65,7 +74,16 @@ const Header = (props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent:'center' }}
           >
-            LOGO
+           <Box
+            component="img"
+            sx={{
+              height: '40px',
+              width: 'inherit',
+        
+            }}
+            alt="Logo"
+            src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-store-bee-and-honey-inipagistudio-mixed-inipagistudio.png"
+          />
           </Typography>
          
 
