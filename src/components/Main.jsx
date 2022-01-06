@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import ProductDetails from './product/ProductDetail';
 import SignIn from "./auth/signin";
 import Signout from "./auth/signout";
+import Checkout from "./checkout/Checkout";
 import TestCart from "./TestCart";
 
 const Main = () => {
@@ -197,6 +198,7 @@ const Main = () => {
         <React.Fragment>
             <Header cartItems={cartItems.items} removeCartItem={handleRemoveCartItem} decrementQty={handleDecrementItem} incrementQty={handleIncrementItem}/>
             <Routes>
+                <Route path="/checkout" element={<Checkout/>}></Route>
                 <Route path="" element={<Home addToCart={handleAddToCart} appState={appState} />}></Route>
                 <Route path="/:id" element={<ProductDetails />} />
                 <Route path="/signin" element={<SignIn />} />
