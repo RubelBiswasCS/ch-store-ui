@@ -7,17 +7,17 @@ import Link from '@mui/material/Link';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" sx={{display:'flex', justifyContent:'center'}} >
-      {'Copyright ©  '}
+    <Typography variant="body2" color="text.secondary" align="center">
+      {'Copyright © '}
       <Link color="inherit" href="https://rubelbiswas.com/">
-        {'&sp website.com '}
-      </Link>
-      {'  '}
-      { new Date().getFullYear()}
+        Rubel Biswas
+      </Link>{' '}
+      {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
 }
+
 
 export default function Footer() {
   return (
