@@ -32,7 +32,7 @@ export default function SignIn() {
 
     axiosInstance
 			.post(`token/`, {
-				username: data.get('email'),
+				email: data.get('email'),
 				password: data.get('password'),
 			})
 			.then((res) => {

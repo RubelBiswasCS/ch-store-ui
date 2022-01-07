@@ -29,10 +29,11 @@ const products = [
   { name: 'Shipping', desc: '', price: 'Free' },
 ];
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 
 
-export default function Review() {
+export default function Review(props) {
+  const {products, address} = props;
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -41,25 +42,26 @@ export default function Review() {
       <List disablePadding>
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <ListItemText primary={product.name} secondary={"Quantity: "+product.quantity} />
+            <Typography variant="body2">{'$' + product.unit_price*product.quantity}</Typography>
           </ListItem>
         ))}
 
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            {"$ "+ products.reduce( (pre, current) => (pre+current.unit_price*current.quantity),0) }
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{address.full_name}</Typography>
+          <Typography gutterBottom>{address.address_line+ ", "+ address.address_line2}</Typography>
+          <Typography gutterBottom>{address.city+", "+address.postcode}</Typography>
         </Grid>
       </Grid>
     </React.Fragment>

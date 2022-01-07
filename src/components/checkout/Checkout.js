@@ -15,12 +15,12 @@ import {useState} from 'react';
 
 const steps = ['Shipping address', 'Review your order'];
 
-function getStepContent(step, address, handleChange) {
+function getStepContent(step, address, products, handleChange) {
   switch (step) {
     case 0:
       return <AddressForm address={address} handleChange={handleChange}/>;
     case 1:
-      return <Review />;
+      return <Review products={products} address={address} />;
     default:
       throw new Error('Unknown step');
   }
@@ -28,8 +28,8 @@ function getStepContent(step, address, handleChange) {
 
 const theme = createTheme();
 
-export default function Checkout() {
-
+export default function Checkout(props) {
+  const products = props.cartItems;
   const [address,setAddress] = useState({
     full_name : "",
     phone : "",
@@ -44,7 +44,7 @@ export default function Checkout() {
       ...address,
       [input]: e.target.value,
     }));
-    console.log("address state: ",address);
+    //console.log("address state: ",address);
   } 
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -86,7 +86,7 @@ export default function Checkout() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep,address,handleChange)}
+                {getStepContent(activeStep,address, products,handleChange)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
