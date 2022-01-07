@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import Review from './Review';
 import {useState} from 'react';
+import axiosInstace from '../../Axios';
 
 const steps = ['Shipping address', 'Review your order'];
 
@@ -56,6 +57,16 @@ export default function Checkout(props) {
     setActiveStep(activeStep - 1);
   };
 
+  const handleSubmit = (address) => (event) => {
+    event.preventDefault();
+    const data = address;
+    axiosInstace
+    .post('user/address/',data)
+    .then((response) => {
+      console.log("response of address post:",response)
+      setActiveStep(activeStep + 1);
+    })
+  }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -75,6 +86,7 @@ export default function Checkout(props) {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
+                
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
@@ -93,7 +105,22 @@ export default function Checkout(props) {
                       Back
                     </Button>
                   )}
-
+                  {activeStep === steps.length - 1 ? (
+                  <Button
+                    variant="contained"
+                    onClick={handleSubmit(address)}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    Confirm Payment
+                  </Button>) : (
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    Next
+                  </Button>)}
+                  {/* 
                   <Button
                     variant="contained"
                     onClick={handleNext}
@@ -101,6 +128,7 @@ export default function Checkout(props) {
                   >
                     {activeStep === steps.length - 1 ? 'Confirm Payment' : 'Next'}
                   </Button>
+                  */}
                 </Box>
               </React.Fragment>
             )}
