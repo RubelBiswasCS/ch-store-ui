@@ -11,17 +11,20 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import Review from './Review';
+import Payment from './Payment';
 import {useState} from 'react';
 import axiosInstace from '../../Axios';
 
-const steps = ['Shipping address', 'Review your order'];
+const steps = ['Shipping address', 'Review your order','Pay'];
 
-function getStepContent(step, address, products, handleChange) {
+function getStepContent(step, address, products, handleChange, handleSubmit) {
   switch (step) {
     case 0:
       return <AddressForm address={address} handleChange={handleChange}/>;
     case 1:
       return <Review products={products} address={address} />;
+    case 2:
+      return <Payment handleSubmit={handleSubmit} />;
     default:
       throw new Error('Unknown step');
   }
@@ -57,8 +60,7 @@ export default function Checkout(props) {
     setActiveStep(activeStep - 1);
   };
 
-  const handleSubmit = (address) => (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     const data = address;
     axiosInstace
     .post('user/address/',data)
@@ -98,21 +100,14 @@ export default function Checkout(props) {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep,address, products,handleChange)}
+                {getStepContent(activeStep,address, products,handleChange,handleSubmit)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                       Back
                     </Button>
                   )}
-                  {activeStep === steps.length - 1 ? (
-                  <Button
-                    variant="contained"
-                    onClick={handleSubmit(address)}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    Confirm Payment
-                  </Button>) : (
+                  {activeStep === steps.length - 1 ? null : (
                   <Button
                     variant="contained"
                     onClick={handleNext}
@@ -127,6 +122,13 @@ export default function Checkout(props) {
                     sx={{ mt: 3, ml: 1 }}
                   >
                     {activeStep === steps.length - 1 ? 'Confirm Payment' : 'Next'}
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={handleSubmit(address)}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    Confirm Payment
                   </Button>
                   */}
                 </Box>
