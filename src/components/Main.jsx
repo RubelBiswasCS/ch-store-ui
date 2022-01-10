@@ -19,10 +19,14 @@ const Main = () => {
         products: null,
     });
 
+   
+
     const [cartItems, setCartItems] = useState({
         loading: true,
         items: [],
+        total:0,
     });
+  
 
     useEffect(() => {
 
@@ -41,12 +45,14 @@ const Main = () => {
         if (localStorage.getItem('refresh_token')) {
             axiosInstance.get('cart/').then(result => {
                 const cartData = result.data;
-
+                
                 setCartItems({
                     loading: false,
                     items: [...cartData],
+                   
                 });
                 //console.log("cart content :",cartData)
+                //console.log("cart items: ",cartItems)
 
             });
         }

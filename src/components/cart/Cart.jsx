@@ -14,14 +14,15 @@ import "./Cart.scss";
 export default function Cart(props) {
   
     const cartItems = props.cartItems;
+    
     let total = 0
     if (cartItems.length > 0){
       total = cartItems.reduce( (pre,current) => (pre+(current.unit_price*current.quantity)),0.0).toFixed(2);
       
     }
-    console.log("total: ",total )
-    console.log(cartItems);
-    console.log(typeof(cartItems));
+    // console.log("total: ",total )
+    // console.log(cartItems);
+    // console.log(typeof(cartItems));
     let anchorEl=props.anchorEl;
     let open=props.open;
   return (
