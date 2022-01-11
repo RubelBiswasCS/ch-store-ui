@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import { CardMedia } from '@mui/material';
-
+import { Link } from "react-router-dom";
 import "./Cart.scss";
 
 export default function Cart(props) {
@@ -90,7 +90,7 @@ export default function Cart(props) {
                     </Grid>
                   </Grid>
                   <Box sx={{ display: 'flex', justifyContent: 'center', padding: "10px" }}>
-                    <Button sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'cyan', padding: '5%', paddingTop: '2%', paddingBottom: '1%', margin: '0', fontSize: '.5em' }} >Checkout</Button>
+                    <Button sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'cyan', padding: '5%', paddingTop: '2%', paddingBottom: '1%', margin: '0', fontSize: '.5em' }} ><Link to="/checkout">Checkout</Link></Button>
                   </Box>
                 </Box>
               :<Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', border: "0px solid red",minHeight:'50px' }}>
