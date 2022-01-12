@@ -44,7 +44,10 @@ const Header = (props) => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) =>  !prev);
   };
-
+  const handleClickAway = () => {
+    setOpen(false);
+    console.log("set open fired: ",open)
+  };
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -128,7 +131,9 @@ const Header = (props) => {
           
           
         </Toolbar>
-        <Cart cartItems={props.cartItems} incrementQty={props.incrementQty} decrementQty={props.decrementQty} removeCartItem={props.removeCartItem} anchorEl={anchorEl} open={open}/>
+        
+          <Cart cartItems={props.cartItems} incrementQty={props.incrementQty} decrementQty={props.decrementQty} removeCartItem={props.removeCartItem} anchorEl={anchorEl} open={open} handleClickAway={handleClickAway}/>
+         
       </Container>
     </AppBar>
     
