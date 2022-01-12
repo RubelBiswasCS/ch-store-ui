@@ -5,7 +5,7 @@ import {
 import axiosInstance from '../../Axios';
 
 export default function Payment(props) {
-    const {handleSubmit,total} = props;
+    const {handleSubmit,setCartItems,total} = props;
   return (
     <PayPalScriptProvider options={{ "client-id": "ASbwVOI8tJSImKKIvuVfJgZRUr7t3w8jmGHzhavBNkN1ASeVryMaP8Z7htFPRxKddwghWxGBgKDlg-BV" }}>
         <PayPalButtons
@@ -43,11 +43,15 @@ export default function Payment(props) {
                     axiosInstance
                     .post('placeorder/',order_info)
                     .then(() => {
-                        console.log("order created")
+                        console.log("order placed")
+                        setCartItems(() => ({
+                            items:[],
+                        }));
+
                     })
-                    console.log('order_details',order_info)
-                    console.log("data: ",data)
-                    console.log("details: ",details)
+                    // console.log('order_details',order_info)
+                    // console.log("data: ",data)
+                    // console.log("details: ",details)
                     //total_paid:details[0].amount.value,
                     //alert(`Transaction completed by ${name}`);
                 });

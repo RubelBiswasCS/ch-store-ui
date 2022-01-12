@@ -17,14 +17,14 @@ import axiosInstace from '../../Axios';
 
 const steps = ['Shipping address', 'Review your order','Pay'];
 
-function getStepContent(step, address, products, handleChange, handleSubmit, total) {
+function getStepContent(step, address, products, handleChange, handleSubmit,setCartItems,total) {
   switch (step) {
     case 0:
       return <AddressForm address={address} handleChange={handleChange}/>;
     case 1:
       return <Review products={products} address={address} />;
     case 2:
-      return <Payment handleSubmit={handleSubmit} total={total} />;
+      return <Payment handleSubmit={handleSubmit} setCartItems={setCartItems} total={total} />;
     default:
       throw new Error('Unknown step');
   }
@@ -34,6 +34,8 @@ const theme = createTheme();
 
 export default function Checkout(props) {
   const products = props.cartItems;
+  const {setCartItems} = props;
+  
   let total = 0
   if (products.length > 0){
     total = products.reduce( (pre,current) => (pre+(current.unit_price*current.quantity)),0.0).toFixed(2);
@@ -105,7 +107,7 @@ export default function Checkout(props) {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep,address, products,handleChange,handleSubmit,total)}
+                {getStepContent(activeStep,address, products,handleChange,handleSubmit,setCartItems,total)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

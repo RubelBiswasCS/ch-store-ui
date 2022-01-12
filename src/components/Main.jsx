@@ -204,7 +204,7 @@ const Main = () => {
         <React.Fragment>
             <Header cartItems={cartItems.items} removeCartItem={handleRemoveCartItem} decrementQty={handleDecrementItem} incrementQty={handleIncrementItem}/>
             <Routes>
-                <Route path="/checkout" element={<Checkout cartItems={cartItems.items}/>}></Route>
+                <Route path="/checkout" element={<Checkout setCartItems={setCartItems}  cartItems={cartItems.items}/>}></Route>
                 <Route path="" element={<Home addToCart={handleAddToCart} appState={appState} />}></Route>
                 <Route path="/:id" element={<ProductDetails />} />
                 <Route path="/signin" element={<SignIn />} />
