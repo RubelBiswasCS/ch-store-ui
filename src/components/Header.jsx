@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Link from '@mui/material/Link';
 
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import Cart from "./cart/Cart";
@@ -59,16 +60,18 @@ const Header = (props) => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-          <Box
-            component="img"
-            sx={{
-              height: '40px',
-              width: 'inherit',
-        
-            }}
-            alt="Logo"
-            src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-store-bee-and-honey-inipagistudio-mixed-inipagistudio.png"
-          />
+          <Link href="/">
+            <Box
+              component="img"
+              sx={{
+                height: '40px',
+                width: 'inherit',
+          
+              }}
+              alt="Logo"
+              src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-store-bee-and-honey-inipagistudio-mixed-inipagistudio.png"
+            />
+          </Link>
           </Typography>
 
          
