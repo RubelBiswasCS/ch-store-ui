@@ -27,7 +27,7 @@ export default function Cart(props) {
     // console.log(typeof(cartItems));
     let anchorEl=props.anchorEl;
     let open=props.open;
-    console.log("open status:",open)
+    //console.log("open status:",open)
 ;  return (
    
 

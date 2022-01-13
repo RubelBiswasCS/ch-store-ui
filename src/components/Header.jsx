@@ -17,8 +17,9 @@ import Cart from "./cart/Cart";
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Header = (props) => {
+  const {cartItems} = props;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  console.log(anchorElNav);
+  //console.log(anchorElNav);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -46,7 +47,7 @@ const Header = (props) => {
   };
   const handleClickAway = () => {
     setOpen(false);
-    console.log("set open fired: ",open)
+    //console.log("set open fired: ",open)
   };
   return (
     <AppBar position="static">
@@ -98,7 +99,7 @@ const Header = (props) => {
             </Tooltip>
             <Box sx={{display:'flex'}} onClick={handleCartOpen}>
               <ShoppingCartTwoToneIcon/>
-              <Typography>2</Typography>
+              <Typography variant="caption" sx={{fontSize:'.5em'}}>{cartItems.length}</Typography>
               
             </Box>
             
