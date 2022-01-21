@@ -14,13 +14,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import axiosInstance from '../../Axios';
-import {useNavigate} from 'react-router-dom';
+
 
 const theme = createTheme();
 
 
 export default function SignIn() {
-  let navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -38,9 +38,11 @@ export default function SignIn() {
 			.then((res) => {
 				localStorage.setItem('access_token', res.data.access);
 				localStorage.setItem('refresh_token', res.data.refresh);
+        localStorage.setItem('username', 'username');
 				axiosInstance.defaults.headers['Authorization'] =
 					'JWT ' + localStorage.getItem('access_token');
-				navigate('/');
+		
+        window.location.href = '/';
 				//console.log(res);
 				//console.log(res.data);
 			});

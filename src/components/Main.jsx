@@ -3,7 +3,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Home from "./Home";
 
-import axiosInstance from '../Axios';
+// import axiosInstance from '../Axios';
+import axiosInstance from './utils/Axios';
 import { useState,useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProductDetails from './product/ProductDetail';
@@ -29,9 +30,16 @@ const Main = () => {
   
 
     useEffect(() => {
+        const url = "http://localhost:8000/api/";
 
-        axiosInstance.get().then(result => {
-            const allProducts = result.data;
+        fetch(url)
+        .then(response => {
+            console.log(response.json)
+            return response.json()})
+        .then(result => {
+            console.log(result)
+            // const allProducts = result.data;
+            const allProducts = result;
             console.log(allProducts);
             setAppState({
                 loading: false,
@@ -40,9 +48,14 @@ const Main = () => {
         });
 
     }, [setAppState]);
-
+    
     useEffect(() => {
-        if (localStorage.getItem('refresh_token')) {
+        let username = localStorage.getItem('username');
+        if (username === null){
+            username = '';
+        }
+        //console.log('username: ',username,username.length)
+        if(username.length !== 0){
             axiosInstance.get('cart/').then(result => {
                 const cartData = result.data;
                 
@@ -56,8 +69,9 @@ const Main = () => {
 
             });
         }
+        
     }, [setCartItems]);
-
+    
     const handleAddToCart = (e, product, qty) => {
 
         e.preventDefault();

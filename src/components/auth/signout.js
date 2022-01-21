@@ -11,6 +11,7 @@ export default function Signout() {
 		});
 		localStorage.removeItem('access_token');
 		localStorage.removeItem('refresh_token');
+		localStorage.removeItem('username');
 		axiosInstance.defaults.headers['Authorization'] = null;
 		console.log('signed out');
 		console.log(response);

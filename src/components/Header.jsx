@@ -18,9 +18,10 @@ import Cart from "./cart/Cart";
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Header = (props) => {
+
   const {cartItems} = props;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  //console.log(anchorElNav);
+  console.log(anchorElNav);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -126,7 +127,10 @@ const Header = (props) => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
+                  {(setting === 'Logout')?
+                  <Link href="/signout"><Typography textAlign="center">{setting}</Typography></Link>:
                   <Typography textAlign="center">{setting}</Typography>
+                  }
                 </MenuItem>
               ))}
             </Menu>
@@ -136,9 +140,8 @@ const Header = (props) => {
           
         </Toolbar>
         
-          <Cart cartItems={props.cartItems} incrementQty={props.incrementQty} decrementQty={props.decrementQty} removeCartItem={props.removeCartItem} anchorEl={anchorEl} open={open} handleClickAway={handleClickAway}/>
-         
-      </Container>
+        <Cart cartItems={props.cartItems} incrementQty={props.incrementQty} decrementQty={props.decrementQty} removeCartItem={props.removeCartItem} anchorEl={anchorEl} open={open} handleClickAway={handleClickAway}/>
+    </Container>
     </AppBar>
     
   );
