@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import ProductDetails from './product/ProductDetail';
 import SignIn from "./auth/signin";
 import Signout from "./auth/signout";
+import SignUp from "./auth/signup";
 import Checkout from "./checkout/Checkout";
 import TestCart from "./TestCart";
 
@@ -223,6 +224,7 @@ const Main = () => {
                 <Route path="/:id" element={<ProductDetails />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signout" element={<Signout />} />
+                <Route path="/signup" element={<SignUp />} />
                 <Route path="/testcart" element={<TestCart />} />
             </Routes>
             <Footer />
