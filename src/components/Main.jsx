@@ -13,6 +13,9 @@ import Signout from "./auth/signout";
 import SignUp from "./auth/signup";
 import Checkout from "./checkout/Checkout";
 import TestCart from "./TestCart";
+import { Dashboard } from "./dashboard/DashboardHome";
+import DashboardHome from "./dashboard/DashboardHome";
+import { Orders } from "./dashboard/DashboardHome";
 
 const Main = () => {
 
@@ -226,6 +229,10 @@ const Main = () => {
                 <Route path="/signout" element={<Signout />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/testcart" element={<TestCart />} />
+                <Route path="/dashboard" element={<Dashboard />}>
+                    <Route index element={<DashboardHome />} />
+                    <Route path="orders" element={<Orders />} />
+                </Route>
             </Routes>
             <Footer />
         </React.Fragment>
