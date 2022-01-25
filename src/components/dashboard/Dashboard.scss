@@ -1,0 +1,26 @@
+@mixin flexRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.dashboard{
+    @include flexRow();
+    min-height: 100vh;
+    color: cyan;
+}
+
+.greenText{
+    color: green;
+}
+.redText{
+    color: red;
+}
+
+.outer{
+    color:red;
+    .inner{
+        color:blue;
+    }
+}

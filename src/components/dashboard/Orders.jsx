@@ -1,12 +1,11 @@
 import * as React from 'react';
-const DashboardHome = () => {
+
+const Orders = () => {
     return (
         <React.Fragment>
-            <h3>Dashboard Home</h3>
+            <h1>Order</h1>
         </React.Fragment>
     );
 }
 
-
-export default DashboardHome;
-
+export default Orders;

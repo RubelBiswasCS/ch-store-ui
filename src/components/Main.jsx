@@ -13,9 +13,9 @@ import Signout from "./auth/signout";
 import SignUp from "./auth/signup";
 import Checkout from "./checkout/Checkout";
 import TestCart from "./TestCart";
-import { Dashboard } from "./dashboard/DashboardHome";
+import Dashboard from "./dashboard/Dashboard";
 import DashboardHome from "./dashboard/DashboardHome";
-import { Orders } from "./dashboard/DashboardHome";
+import Orders from "./dashboard/Orders";
 
 const Main = () => {
 
