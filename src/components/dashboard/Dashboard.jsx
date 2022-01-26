@@ -3,6 +3,7 @@ import {
     Outlet
   } from "react-router-dom";
 import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 import SidebarNavigation from './SidebarNavigation';
 import './Dashboard.scss';
 
@@ -14,10 +15,11 @@ const Dashboard = () => {
             className={'dashboard'}
         
         >   
-            <Grid  item sx={{p:'50px',width:'20%',minHeight:'100%',overflow:'hidden',bgcolor:'blueviolet'}}>
+            <Grid  item >
                 <SidebarNavigation/>
             </Grid>
-            <Grid  item sx={{p:'50px'}}>
+            <Divider className='dashSection' sx={{minWidth:'10px'}}  orientation="vertical" flexItem/>
+            <Grid className='dashSection' item sx={{p:'50px'}}>
                 <Outlet/>
             </Grid>
             

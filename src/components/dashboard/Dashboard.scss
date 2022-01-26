@@ -1,16 +1,50 @@
-@mixin flexRow {
+@mixin flex($direction:row) {
     display: flex;
-    flex-direction: row;
+    flex-direction: $direction;
+
+}
+@mixin  flexStart{
     justify-content: flex-start;
     align-items: flex-start;
 }
-
+@mixin flexCenter {
+    justify-content: center;
+    align-items: center;
+}
 .dashboard{
-    @include flexRow();
+    @include flex();
+    width: 100vw;
     min-height: 100vh;
     color: cyan;
-}
+        .slidebarNav{
+            @include flex();
+            @include flexStart();
 
+           
+            min-height: 100%;
+            overflow: hidden;
+            background-color: cornsilk;
+            color:red;
+            .navIcons{
+                @include flex($direction:column);
+                justify-content: flex-start;
+                align-items: center;
+                width: 5vw;
+                min-height: 100vh;
+                background-color: aqua;
+            }
+            .navNames{
+                @include flex($direction:column);
+                justify-content: flex-start;
+                align-items: center;
+                width: 15vw;
+                min-height: 100vh;
+                background-color: blue;
+            }
+        
+        } 
+}
+// @include flex($direction:column );
 .greenText{
     color: green;
 }
