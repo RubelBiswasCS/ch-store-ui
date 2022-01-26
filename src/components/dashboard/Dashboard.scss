@@ -8,53 +8,66 @@
     align-items: flex-start;
 }
 @mixin flexCenter {
+
     justify-content: center;
     align-items: center;
 }
 .dashboard{
     @include flex();
+    margin-top: 5px;
     width: 100vw;
     min-height: 100vh;
     color: cyan;
         .slidebarNav{
             @include flex();
             @include flexStart();
-
-           
             min-height: 100%;
             overflow: hidden;
             background-color: cornsilk;
-            color:red;
-            .navIcons{
+            color:rgb(238, 159, 12);
+            @mixin navItemWrapper {
                 @include flex($direction:column);
                 justify-content: flex-start;
                 align-items: center;
-                width: 5vw;
                 min-height: 100vh;
-                background-color: aqua;
+                padding-top:1%;
+                padding-bottom:1%;
+                margin:0;
+                background-color: white;
+            }
+            .navIcons{
+                @include navItemWrapper();
+                width: 5vw;
+                // background-color: gray;
+                padding:1px;
             }
             .navNames{
-                @include flex($direction:column);
-                justify-content: flex-start;
-                align-items: center;
-                width: 15vw;
-                min-height: 100vh;
-                background-color: blue;
+                @include navItemWrapper();
+                width: 12vw;
             }
+            .navItem{
+                @include flex();
+                @include flexCenter();
+                min-height: 7vh !important;
+                overflow: auto;
+                width: 100%;
+                background-color: white;
+                margin-top:2px;
+                margin-bottom:2px;
+                // background-color: yellow;
+                .navButton{
+                    // background: yellow;
+                    padding:10%;
+                    font-size:1em;
+                    border-radius: 5px;
+                    .navIcon{
+                        color: rgb(238, 108, 2);
+                        font-size: 1.3em;
+                    }
+                }
+            }
+            
         
         } 
 }
 // @include flex($direction:column );
-.greenText{
-    color: green;
-}
-.redText{
-    color: red;
-}
-
-.outer{
-    color:red;
-    .inner{
-        color:blue;
-    }
-}
