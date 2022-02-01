@@ -64,58 +64,47 @@ const SidebarNavigation = () => {
  
     return (
         <Grid className={'slidebarNav'}  container>
+                    
             <Box item className={'nav-list'}>
-                <NavItem >
                     <NavButton onClick={handleDisplay}>
-                        <BtnIcon><OpenInNewOffRoundedIcon className='btn-icon'/></BtnIcon>
-
+                        <BtnIcon><OpenInNewOffRoundedIcon /></BtnIcon>
+                        <BtnText display={display}></BtnText>
                     </NavButton>
-                </NavItem>
-                <NavItem >
+
                     <NavButton onClick={() => {console.log("clicked")}}>
                         <BtnIcon><GridViewRoundedIcon color={'error'} /></BtnIcon>
                         <BtnText display={display}><Typography>Overview</Typography></BtnText>
                     </NavButton>
-                    
-                </NavItem>
-                <NavItem >
+
                     <NavButton onClick={() => {console.log("clicked")}}>
-                    <BtnIcon><LocalMallRoundedIcon color={'error'} /></BtnIcon>
+                        <BtnIcon><LocalMallRoundedIcon color={'error'} /></BtnIcon>
                         <BtnText display={display}><Typography>Orders</Typography></BtnText>
                     </NavButton>
                      
-                </NavItem>
-                <NavItem >
                     <NavButton onClick={() => {console.log("clicked")}}>
                         <BtnIcon><MessageRoundedIcon className='navIcon' color={'error'} /></BtnIcon>
                         <BtnText display={display}><Typography>Messages</Typography></BtnText>
                     </NavButton>
-                </NavItem>
-                <NavItem >
+                
                     <NavButton onClick={() => {console.log("clicked")}}>
                         <BtnIcon><NotificationAddRoundedIcon className='navIcon'/></BtnIcon>
                         <BtnText display={display}><Typography>Notifications</Typography></BtnText>
                     </NavButton>
-                </NavItem>
-                <NavItem >
+                
                     <NavButton onClick={() => {console.log("clicked")}}>
                         <BtnIcon><ManageAccountsRoundedIcon className='navIcon'/></BtnIcon>
                         <BtnText display={display}><Typography>Profile</Typography></BtnText>
                     </NavButton>
-                </NavItem>
                 
-                <NavItem >
                     <NavButton onClick={() => {console.log("clicked")}}>
                         <BtnIcon><BuildIcon className='navIcon'/></BtnIcon>
                         <BtnText display={display}><Typography>Settings</Typography></BtnText>
                     </NavButton>
-                </NavItem>
-                <NavItem >
+                
                     <NavButton onClick={() => {console.log("clicked")}}>
                         <BtnIcon><ContactSupportRoundedIcon /></BtnIcon>
                         <BtnText display={display}><Typography>Help</Typography></BtnText>
                     </NavButton>
-                </NavItem>
                 
             </Box>
             {/* <Box item sx={{display:slidebarState.displayNavNames}} className={'navNames'}>

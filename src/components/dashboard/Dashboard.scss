@@ -32,57 +32,54 @@
                 min-height: 100vh;
                 padding-top:1%;
                 padding-bottom:1%;
-                margin:0;
+                margin:0px;
+                padding:0px;
                 background-color: white;
             }
             .nav-list{
                 @include navItemWrapper();
 
                 // background-color: gray;
-                padding:1px;
+                padding:0px;
+                margin: 0px;
             }
            
-            .nav-item{
-                @include flex();
-                @include flex-center();
-                min-height: 7vh !important;
-                overflow: auto;
-
-                background-color: white;
-                margin-top:2px;
-                margin-bottom:2px;
                 // background-color: yellow;
-                .nav-button{
-                    // background: yellow;
+            .nav-button{
+                // background: yellow;
+                @include flex();
+                align-items: flex-start;
+                justify-content: center;
+                max-width: 20vw;
+                margin: 0px;
+                padding: 0px;
+                font-size:1em;
+                border-radius: 5px;
+                background-color: lemonchiffon;
+                .btn-icon{
                     @include flex();
                     @include flex-center();
-                    padding:10%;
-             
-                    font-size:1em;
-                    border-radius: 5px;
-                    .btn-icon{
-                        @include flex();
-                        @include flex-center();
-                        color: rgb(238, 108, 2);
-                        font-size: 1.3em;
-                        width: 4vw;
-                        padding: 1px;
-                        margin:0px;
-                       // background: greenyellow;
-                    }
-                    .btn-text{
-                        @include flex();
-                        @include flex-center();
-                        color: rgb(238, 108, 2);
-                        min-width: 15vw;
-                        padding: 1px;
-                        margin:0px;
-                        //background: lightblue;
-                    }
+                    color: rgb(238, 108, 2);
+                    font-size: 1.1em;
+                    min-width: 4vw;
+                    min-height: 5vh !important;
+                    padding: 0px;
+                    margin: 0px;
+                    background: greenyellow;
+                }
+                .btn-text{
+                    @include flex();
+                    @include flex-center();
+                    color: rgb(238, 108, 2);
+                    font-size: 1.1em;
+                    min-width: 15vw;
+                    min-height: 5vh !important;
+                    padding: 0px;
+                    margin: 0px;
+                    background: lightblue;
                 }
             }
-            
+        }
         
-        } 
 }
 // @include flex($direction:column );
