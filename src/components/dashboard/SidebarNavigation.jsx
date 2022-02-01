@@ -19,30 +19,44 @@ import './Dashboard.scss';
 const navLinks = ['Overview','Orders','Messages','Notifications','Profile','Settings','Help'];
 const NavItem = ({children}) => {
     return (
-        <Grid className={'navItem'}>
+        <Grid className={'nav-item'}>
             {children}
         </Grid>
     );
 }
 const NavButton = ({children,...props}) => {
     return (
-        <Button className='navButton' {...props}>
+        <Button className='nav-button' {...props}>
             {children}
         </Button>
     );
 }
+const BtnIcon = (props) => {
+    return (
+        <div className='btn-icon'>{props.children}</div>
+    );
+}
+const BtnText = (props) => {
+    console.log(props.display)
+    return (
+        <div className='btn-text' style={{...props.display}}>{props.children}</div>
+    );
+}
 const SidebarNavigation = () => {
-    const [slidebarState, setSlidebarState] = React.useState({
-        displayNavNames:"", 
+    const [display, setDisplay] = React.useState({
+        display:'',
     });
-    const handleSidebarState = () => {
-            console.log('clicked')
-            setSlidebarState((pre) => {
-                if (pre.displayNavNames === "none !important"){
-                    return {displayNavNames:''}
+    const handleDisplay = (e) => {
+            e.preventDefault();
+            console.log('just clicked')
+            //console.log('display: ',display.display)
+            setDisplay((pre) => {
+                //console.log(pre)
+                if (pre.display === "none"){
+                    return {display:''}
                 }
                 else{
-                    return {displayNavNames:'none !important'}
+                    return {display:'none'}
                 }
 
             });
@@ -50,51 +64,61 @@ const SidebarNavigation = () => {
  
     return (
         <Grid className={'slidebarNav'}  container>
-            <Box item className={'navIcons'}>
+            <Box item className={'nav-list'}>
                 <NavItem >
-                    <NavButton onClick={() => handleSidebarState()}>
-                        <OpenInNewOffRoundedIcon className='navIcon'/>
+                    <NavButton onClick={handleDisplay}>
+                        <BtnIcon><OpenInNewOffRoundedIcon className='btn-icon'/></BtnIcon>
+
                     </NavButton>
                 </NavItem>
                 <NavItem >
                     <NavButton onClick={() => {console.log("clicked")}}>
-                        <GridViewRoundedIcon className='navIcon' color={'error'} />
+                        <BtnIcon><GridViewRoundedIcon color={'error'} /></BtnIcon>
+                        <BtnText display={display}><Typography>Overview</Typography></BtnText>
+                    </NavButton>
+                    
+                </NavItem>
+                <NavItem >
+                    <NavButton onClick={() => {console.log("clicked")}}>
+                    <BtnIcon><LocalMallRoundedIcon color={'error'} /></BtnIcon>
+                        <BtnText display={display}><Typography>Orders</Typography></BtnText>
+                    </NavButton>
+                     
+                </NavItem>
+                <NavItem >
+                    <NavButton onClick={() => {console.log("clicked")}}>
+                        <BtnIcon><MessageRoundedIcon className='navIcon' color={'error'} /></BtnIcon>
+                        <BtnText display={display}><Typography>Messages</Typography></BtnText>
                     </NavButton>
                 </NavItem>
                 <NavItem >
                     <NavButton onClick={() => {console.log("clicked")}}>
-                        <LocalMallRoundedIcon className='navIcon' color={'error'} />
+                        <BtnIcon><NotificationAddRoundedIcon className='navIcon'/></BtnIcon>
+                        <BtnText display={display}><Typography>Notifications</Typography></BtnText>
                     </NavButton>
                 </NavItem>
                 <NavItem >
                     <NavButton onClick={() => {console.log("clicked")}}>
-                        <MessageRoundedIcon className='navIcon' color={'error'} />
-                    </NavButton>
-                </NavItem>
-                <NavItem >
-                    <NavButton onClick={() => {console.log("clicked")}}>
-                        <NotificationAddRoundedIcon className='navIcon'/>
-                    </NavButton>
-                </NavItem>
-                <NavItem >
-                    <NavButton onClick={() => {console.log("clicked")}}>
-                        <ManageAccountsRoundedIcon className='navIcon'/>
+                        <BtnIcon><ManageAccountsRoundedIcon className='navIcon'/></BtnIcon>
+                        <BtnText display={display}><Typography>Profile</Typography></BtnText>
                     </NavButton>
                 </NavItem>
                 
                 <NavItem >
                     <NavButton onClick={() => {console.log("clicked")}}>
-                        <BuildIcon className='navIcon'/>
+                        <BtnIcon><BuildIcon className='navIcon'/></BtnIcon>
+                        <BtnText display={display}><Typography>Settings</Typography></BtnText>
                     </NavButton>
                 </NavItem>
                 <NavItem >
                     <NavButton onClick={() => {console.log("clicked")}}>
-                        <ContactSupportRoundedIcon className='navIcon'/>
+                        <BtnIcon><ContactSupportRoundedIcon /></BtnIcon>
+                        <BtnText display={display}><Typography>Help</Typography></BtnText>
                     </NavButton>
                 </NavItem>
                 
             </Box>
-            <Box item sx={{display:slidebarState.displayNavNames}} className={'navNames'}>
+            {/* <Box item sx={{display:slidebarState.displayNavNames}} className={'navNames'}>
                 <NavItem  item>
                     <Typography></Typography>
                 </NavItem>
@@ -106,7 +130,7 @@ const SidebarNavigation = () => {
                 <NavItem  item><Typography>Settings</Typography> </NavItem>
                 <NavItem  item><Typography>Help</Typography> </NavItem>
             
-            </Box>
+            </Box> */}
         </Grid>
         );
 }

@@ -3,11 +3,11 @@
     flex-direction: $direction;
 
 }
-@mixin  flexStart{
+@mixin  flex-start{
     justify-content: flex-start;
     align-items: flex-start;
 }
-@mixin flexCenter {
+@mixin flex-center {
 
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@
     color: cyan;
         .slidebarNav{
             @include flex();
-            @include flexStart();
+            @include flex-start();
             min-height: 100%;
             overflow: hidden;
             background-color: cornsilk;
@@ -35,34 +35,49 @@
                 margin:0;
                 background-color: white;
             }
-            .navIcons{
+            .nav-list{
                 @include navItemWrapper();
-                width: 5vw;
+
                 // background-color: gray;
                 padding:1px;
             }
-            .navNames{
-                @include navItemWrapper();
-                width: 12vw;
-            }
-            .navItem{
+           
+            .nav-item{
                 @include flex();
-                @include flexCenter();
+                @include flex-center();
                 min-height: 7vh !important;
                 overflow: auto;
-                width: 100%;
+
                 background-color: white;
                 margin-top:2px;
                 margin-bottom:2px;
                 // background-color: yellow;
-                .navButton{
+                .nav-button{
                     // background: yellow;
+                    @include flex();
+                    @include flex-center();
                     padding:10%;
+             
                     font-size:1em;
                     border-radius: 5px;
-                    .navIcon{
+                    .btn-icon{
+                        @include flex();
+                        @include flex-center();
                         color: rgb(238, 108, 2);
                         font-size: 1.3em;
+                        width: 4vw;
+                        padding: 1px;
+                        margin:0px;
+                       // background: greenyellow;
+                    }
+                    .btn-text{
+                        @include flex();
+                        @include flex-center();
+                        color: rgb(238, 108, 2);
+                        min-width: 15vw;
+                        padding: 1px;
+                        margin:0px;
+                        //background: lightblue;
                     }
                 }
             }
