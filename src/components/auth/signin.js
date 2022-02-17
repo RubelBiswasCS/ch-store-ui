@@ -13,7 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import axiosInstance from '../../Axios';
+import axiosInstance from '../utils/Axios';
+import {rawInstance} from '../utils/Axios';
 
 
 const theme = createTheme();
@@ -30,7 +31,7 @@ export default function SignIn() {
       password: data.get('password'),
     });
 
-    axiosInstance
+    rawInstance
 			.post(`token/`, {
 				email: data.get('email'),
 				password: data.get('password'),
@@ -41,11 +42,13 @@ export default function SignIn() {
         localStorage.setItem('username', 'username');
 				axiosInstance.defaults.headers['Authorization'] =
 					'JWT ' + localStorage.getItem('access_token');
-		
+       
         window.location.href = '/';
+        console.log('signed in')
 				//console.log(res);
 				//console.log(res.data);
-			});
+			})
+      .catch( error => {console.log(error)});
   };
 
   return (
@@ -94,11 +97,13 @@ export default function SignIn() {
               label="Remember me"
             />
             <Button
+              
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
+              
               Sign In
             </Button>
             <Grid container>
@@ -108,7 +113,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
