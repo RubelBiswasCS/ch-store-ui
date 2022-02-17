@@ -15,7 +15,7 @@ import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import Cart from "./cart/Cart";
 
 //const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['profile', 'orders', 'dashboard', 'signout'];
 
 const Header = (props) => {
 
@@ -127,10 +127,10 @@ const Header = (props) => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                  {(setting === 'Logout')?
-                  <Link href="/signout"><Typography textAlign="center">{setting}</Typography></Link>:
-                  <Typography textAlign="center">{setting}</Typography>
-                  }
+                  
+                  <Link href={'/'+setting}><Typography textAlign="center">{setting.toUpperCase()}</Typography></Link>
+                  
+               
                 </MenuItem>
               ))}
             </Menu>
