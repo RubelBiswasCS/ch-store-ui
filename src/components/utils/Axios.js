@@ -65,10 +65,11 @@ axiosInstance.interceptors.response.use(
                             localStorage.setItem('access_token', response.data.access);
                             localStorage.setItem('refresh_token', response.data.refresh);
                             axiosInstance.defaults.headers['Authorization'] = 'JWT ' + response.data.access;
-                            axiosInstance.headers['Authorization'] = 'JWT ' + response.data.access;
+                            
+                            console.log("new access token added")
                             return axiosInstance(originalRequest);
                         }).catch((err) => {
-                            console.log('error on post request with refreshToken : ', err.response)
+                            console.log('error on post request with refreshToken : ', err)
                         });
                 }
                 else {
