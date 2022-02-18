@@ -41,13 +41,13 @@ axiosInstance.interceptors.response.use(
             window.location.href = '/signin/';
             return Promise.reject(error);
         }
-        if (error.response.status === 401) {
-            const refreshToken = localStorage.getItem('refresh_token');
-            if (!refreshToken) {
-                window.location.href = '/signin/';
-                return Promise.reject(error);
-            }
-        }
+        // if (error.response.status === 401) {
+        //     const refreshToken = localStorage.getItem('refresh_token');
+        //     if (!refreshToken) {
+        //         window.location.href = '/signin/';
+        //         return Promise.reject(error);
+        //     }
+        // }
         if (error.response.data.code === 'token_not_valid' &&
             error.response.status === 401 &&
             error.response.statusText === 'Unauthorized') {
@@ -64,8 +64,10 @@ axiosInstance.interceptors.response.use(
                             console.log(response.data)
                             localStorage.setItem('access_token', response.data.access);
                             localStorage.setItem('refresh_token', response.data.refresh);
-                            axiosInstance.defaults.headers['Authorization'] = 'JWT ' + response.data.access;
-                            
+                            axiosInstance.defaults.headers['Authorization'] =
+								'JWT ' + response.data.access;
+							originalRequest.headers['Authorization'] =
+								'JWT ' + response.data.access;
                             console.log("new access token added")
                             return axiosInstance(originalRequest);
                         }).catch((err) => {
@@ -81,7 +83,7 @@ axiosInstance.interceptors.response.use(
             else {
                 console.log("Refresh token is not available.");
                 localStorage.setItem('username', '');
-                window.location.href = '/singin/';
+                //window.location.href = '/singin/';
             }
         }
         return Promise.reject(error);
