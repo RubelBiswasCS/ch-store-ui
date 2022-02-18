@@ -17,6 +17,7 @@ import Dashboard from "./dashboard/Dashboard";
 import DashboardHome from "./dashboard/DashboardHome";
 import Orders from "./dashboard/Orders";
 
+import OrderContext from "../Context/OrderContext";
 const Main = () => {
 
     const [appState, setAppState] = useState({
@@ -31,14 +32,36 @@ const Main = () => {
         items: [],
         total:0,
     });
-  
+    const [orderItems,setOrderItems] = useState([]);
+    useEffect(() => {
+        let username = localStorage.getItem('username');
+        if (username === null){
+            username = '';
+        }
+        //console.log('username: ',username,username.length)
+        if(username.length !== 0){
+        const orderUrl = "http://localhost:8000/api/getorder";
+        axiosInstance.get(orderUrl)
+        .then( response => {
+            console.log(typeof(response.data))
+            return response.data
+        })
+        .then( result => {
+            setOrderItems([...result])
+            console.log("order items: ",result)
+        })
+        .catch( error => {
+            console.log(error);
+        })
+    }
+    },[]);
 
     useEffect(() => {
         const url = "http://localhost:8000/api/";
 
         fetch(url)
         .then(response => {
-            console.log(response.json)
+            //console.log(response.json)
             return response.json()})
         .then(result => {
             console.log(result)
@@ -220,7 +243,9 @@ const Main = () => {
 
     return (
         <React.Fragment>
+            
             <Header cartItems={cartItems.items} removeCartItem={handleRemoveCartItem} decrementQty={handleDecrementItem} incrementQty={handleIncrementItem}/>
+            
             <Routes>
                 <Route path="/checkout" element={<Checkout setCartItems={setCartItems}  cartItems={cartItems.items}/>}></Route>
                 <Route path="" element={<Home addToCart={handleAddToCart} appState={appState} />}></Route>
@@ -229,12 +254,16 @@ const Main = () => {
                 <Route path="/signout" element={<Signout />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/testcart" element={<TestCart />} />
-                <Route path="/dashboard" element={<Dashboard />}>
+                <Route path="/dashboard" element={<OrderContext.Provider value={{orderItems}}><Dashboard /></OrderContext.Provider>}>
+                    
                     <Route index element={<DashboardHome />} />
                     <Route path="orders" element={<Orders />} />
+                   
                 </Route>
             </Routes>
+            
             <Footer />
+            
         </React.Fragment>
     );
 };

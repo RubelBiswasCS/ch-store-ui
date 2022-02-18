@@ -16,7 +16,24 @@ import Cart from "./cart/Cart";
 
 //const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['profile', 'orders', 'dashboard', 'signout'];
-
+const options = [
+      {
+        name:'profile',
+        url:'profile'
+      },
+      {
+        name:'orders',
+        url:'dashboard/orders'
+      },
+      {
+        name:'dashboard',
+        url:'dashboard',
+      },
+      {
+        name:'signout',
+        url:'signout',
+      },
+    ]
 const Header = (props) => {
 
   const {cartItems} = props;
@@ -125,10 +142,10 @@ const Header = (props) => {
               //add dec 23
               onClick={handleOpenNavMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseNavMenu}>
+              {options.map((setting) => (
+                <MenuItem key={setting.name} onClick={handleCloseNavMenu}>
                   
-                  <Link href={'/'+setting}><Typography textAlign="center">{setting.toUpperCase()}</Typography></Link>
+                  <Link href={'/'+setting.url}><Typography textAlign="center">{setting.name.toUpperCase()}</Typography></Link>
                   
                
                 </MenuItem>
