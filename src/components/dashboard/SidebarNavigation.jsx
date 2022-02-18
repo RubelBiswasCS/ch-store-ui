@@ -37,7 +37,7 @@ const BtnIcon = (props) => {
     );
 }
 const BtnText = (props) => {
-    console.log(props.display)
+    //console.log(props.display)
     return (
         <div className='btn-text' style={{...props.display}}>{props.children}</div>
     );
