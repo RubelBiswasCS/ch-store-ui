@@ -10,7 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
-
+import { flexCenter } from './styleJsx/style';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import Cart from "./cart/Cart";
 
@@ -69,7 +69,7 @@ const Header = (props) => {
     //console.log("set open fired: ",open)
   };
   return (
-    <AppBar position="static">
+    <AppBar  style={{backgroundColor:"#2ab7ca"}} position="static">
       <Container maxWidth="xl">
         <Toolbar >
           <Typography
@@ -78,7 +78,7 @@ const Header = (props) => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-          <Link href="/">
+          <Link style={{...flexCenter}} href="/">
             <Box
               component="img"
               sx={{
