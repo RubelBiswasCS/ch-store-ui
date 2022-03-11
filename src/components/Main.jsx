@@ -32,7 +32,7 @@ const Main = () => {
         items: [],
         total:0,
     });
-    const [orderItems,setOrderItems] = useState([]);
+    const [orders,setOrders] = useState([]);
     useEffect(() => {
         let username = localStorage.getItem('username');
         if (username === null){
@@ -47,7 +47,7 @@ const Main = () => {
             return response.data
         })
         .then( result => {
-            setOrderItems([...result])
+            setOrders([...result])
             console.log("order items: ",result)
         })
         .catch( error => {
@@ -254,7 +254,7 @@ const Main = () => {
                 <Route path="/signout" element={<Signout />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/testcart" element={<TestCart />} />
-                <Route path="/dashboard" element={<OrderContext.Provider value={{orderItems}}><Dashboard /></OrderContext.Provider>}>
+                <Route path="/dashboard" element={<OrderContext.Provider value={{orders}}><Dashboard /></OrderContext.Provider>}>
                     
                     <Route index element={<DashboardHome />} />
                     <Route path="orders" element={<Orders />} />

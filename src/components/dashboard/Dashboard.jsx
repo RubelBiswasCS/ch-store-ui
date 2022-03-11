@@ -9,16 +9,14 @@ import './Dashboard.scss';
 
 const Dashboard = () => {
     return (
-
         <Grid 
             container
             className={'dashboard'}
-        
         >   
             <Grid  item >
                 <SidebarNavigation/>
             </Grid>
-            <Divider className='dashSection'  orientation="vertical" flexItem/>
+            <Divider className='divider'  orientation="vertical" flexItem/>
             <Grid className='dashSection' item sx={{p:'50px'}}>
                 <Outlet/>
             </Grid>
