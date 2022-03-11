@@ -1,0 +1,26 @@
+table.order-list{
+    color:black;
+    border-spacing: 0 .5em;
+    border: 1.5px solid rgb(46, 123, 173);
+    padding:5px;
+    width: 100%;
+    thead{
+        background-color: #ffffff;
+        tr{
+            th{
+                height: 25px;
+            }
+        }
+    }
+    tbody{
+        background-color: #f6f7f9;
+        tr{
+            td{
+                text-align: center;
+                span{
+                    color:rgb(241, 142, 12);
+                }
+            }
+        }
+    }
+}
