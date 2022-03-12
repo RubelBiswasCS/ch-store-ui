@@ -23,8 +23,8 @@
             @include flex-start();
             min-height: 100%;
             overflow: hidden;
-            background-color: cornsilk;
-            color:rgb(238, 159, 12);
+            background-color: rgba(255,255,255,255);
+            color:rgba(170,174,185,255);
             @mixin navItemWrapper {
                 @include flex($direction:column);
                 justify-content: flex-start;
@@ -55,11 +55,11 @@
                 padding: 0px;
                 font-size:1em;
                 border-radius: 5px;
-                background-color: lemonchiffon;
+                background-color: #ffffff;
                 .btn-icon{
                     @include flex();
                     @include flex-center();
-                    color: rgb(238, 108, 2);
+                    color: #aaaeb9;
                     font-size: 1.1em;
                     min-width: 4vw;
                     min-height: 5vh !important;
@@ -70,7 +70,7 @@
                 .btn-text{
                     @include flex();
                     @include flex-center();
-                    color: rgb(238, 108, 2);
+                    color: #aaaeb9;
                     font-size: 1.1em;
                     min-width: 15vw;
                     min-height: 5vh !important;

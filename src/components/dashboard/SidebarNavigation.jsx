@@ -72,17 +72,17 @@ const SidebarNavigation = () => {
                     </NavButton>
 
                     <NavButton onClick={() => {console.log("clicked")}}>
-                        <BtnIcon><GridViewRoundedIcon color={'error'} /></BtnIcon>
+                        <BtnIcon><GridViewRoundedIcon  /></BtnIcon>
                         <BtnText display={display}><Typography>Overview</Typography></BtnText>
                     </NavButton>
 
                     <NavButton onClick={() => {console.log("clicked")}}>
-                        <BtnIcon><LocalMallRoundedIcon color={'error'} /></BtnIcon>
+                        <BtnIcon><LocalMallRoundedIcon  /></BtnIcon>
                         <BtnText display={display}><Typography>Orders</Typography></BtnText>
                     </NavButton>
                      
                     <NavButton onClick={() => {console.log("clicked")}}>
-                        <BtnIcon><MessageRoundedIcon className='navIcon' color={'error'} /></BtnIcon>
+                        <BtnIcon><MessageRoundedIcon className='navIcon'  /></BtnIcon>
                         <BtnText display={display}><Typography>Messages</Typography></BtnText>
                     </NavButton>
                 
