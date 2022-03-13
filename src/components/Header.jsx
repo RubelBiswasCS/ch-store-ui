@@ -10,6 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
+import {Link as RRDLink} from "react-router-dom";
 import { flexCenter } from './styleJsx/style';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import Cart from "./cart/Cart";
@@ -145,7 +146,7 @@ const Header = (props) => {
               {options.map((setting) => (
                 <MenuItem key={setting.name} onClick={handleCloseNavMenu}>
                   
-                  <Link href={'/'+setting.url}><Typography textAlign="center">{setting.name.toUpperCase()}</Typography></Link>
+                  <RRDLink to={'/'+setting.url}><Typography textAlign="center">{setting.name.toUpperCase()}</Typography></RRDLink>
                   
                
                 </MenuItem>

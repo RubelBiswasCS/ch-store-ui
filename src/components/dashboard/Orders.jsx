@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import { Link } from "react-router-dom";
 import './Orders.scss';
 
 
@@ -43,7 +44,7 @@ const Orders = () => {
                 <TableCell >{order.city}</TableCell>
                 <TableCell >{order.total_paid}</TableCell>
                 <TableCell >Pending</TableCell>
-                <TableCell >View</TableCell>
+                <TableCell ><Link to={`${order.order_key}`}>View</Link></TableCell>
             </TableRow>
 
         );

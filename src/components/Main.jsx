@@ -16,6 +16,7 @@ import TestCart from "./TestCart";
 import Dashboard from "./dashboard/Dashboard";
 import DashboardHome from "./dashboard/DashboardHome";
 import Orders from "./dashboard/Orders";
+import SingleOrder from "./dashboard/SingleOrder";
 
 import OrderContext from "../Context/OrderContext";
 const Main = () => {
@@ -33,6 +34,7 @@ const Main = () => {
         total:0,
     });
     const [orders,setOrders] = useState([]);
+  
     useEffect(() => {
         let username = localStorage.getItem('username');
         if (username === null){
@@ -245,7 +247,7 @@ const Main = () => {
         <React.Fragment>
             
             <Header cartItems={cartItems.items} removeCartItem={handleRemoveCartItem} decrementQty={handleDecrementItem} incrementQty={handleIncrementItem}/>
-            
+            <OrderContext.Provider value={{orders}}>
             <Routes>
                 <Route path="/checkout" element={<Checkout setCartItems={setCartItems}  cartItems={cartItems.items}/>}></Route>
                 <Route path="" element={<Home addToCart={handleAddToCart} appState={appState} />}></Route>
@@ -254,13 +256,17 @@ const Main = () => {
                 <Route path="/signout" element={<Signout />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/testcart" element={<TestCart />} />
-                <Route path="/dashboard" element={<OrderContext.Provider value={{orders}}><Dashboard /></OrderContext.Provider>}>
-                    
-                    <Route index element={<DashboardHome />} />
-                    <Route path="orders" element={<Orders />} />
+               
+                <Route path="/dashboard" element={<Dashboard />}>
+                   
+                        <Route index element={<DashboardHome />} />
+                        <Route path="orders" element={<Orders />} />
+                        <Route path="orders/:id" element={<SingleOrder />} />
                    
                 </Route>
-            </Routes>
+            </Routes>  
+            </OrderContext.Provider>
+          
             
             <Footer />
             

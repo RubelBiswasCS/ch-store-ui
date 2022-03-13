@@ -26,7 +26,7 @@ axiosInstance.interceptors.response.use(
         console.log('original request: ', originalRequest)
         console.log("original request url", originalRequest.url)
         console.log("response : ", error.response)
-        console.log("response status: ", error.response.status)
+        //console.log("response status: ", error.response.status)
         if (typeof error.response === 'undefined') {
             alert(
                 'A server/network error occurred. ' +
