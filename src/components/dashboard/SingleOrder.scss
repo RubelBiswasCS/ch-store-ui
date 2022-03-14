@@ -1,0 +1,29 @@
+.single-order{
+    display: flex;
+    color:black;
+    font-size: 1em;
+    min-width: 70vw;
+    .user-details{
+        width: 100%;
+       
+        .user-details-content{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            //border: 2px solid pink;
+            .udc{
+                min-width: 50%;
+            }
+        }
+    }
+    .order-item-list{
+        width: 100%;
+    }
+    .title{
+        color: black;
+        font-size: 1em;
+        font-weight: bold;
+    }
+}
