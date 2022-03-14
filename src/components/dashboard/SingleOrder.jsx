@@ -21,9 +21,9 @@ const SingleOrder = () => {
 
     const {orders} = React.useContext(OrderContext)
     const { id } = useParams();
-
+    const currentOrder = orders.find(order => order.order_key === id)
     const OrderItems = (props) => {
-
+        
         const item = props.item;
         return (<>
             <div style={{ color: 'black' }} key={item.product.name}>{item.product.name}</div>
@@ -35,8 +35,8 @@ const SingleOrder = () => {
                 <div>This is a single order with more details</div>
             </Grid>
             <Grid item>
-                {/* {(typeof(currentOrder0)=== 'undefined' || !currentOrder)?<div>loading</div>: */}
-                {orders.find(order => order.order_key === id).order_items.map(item => (<OrderItems item={item} />))}
+                {(typeof(currentOrder)=== 'undefined' || !currentOrder)?<div>loading</div>:
+                currentOrder.order_items.map(item => (<OrderItems item={item} />))}
 
             </Grid>
         </Grid>

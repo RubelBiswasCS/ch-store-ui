@@ -56,7 +56,7 @@ const Main = () => {
             console.log(error);
         })
     }
-    },[]);
+    },[setOrders]);
 
     useEffect(() => {
         const url = "http://localhost:8000/api/";
@@ -198,7 +198,6 @@ const Main = () => {
             axiosInstance
                 .delete('cart/' + product + '/')
                 .then(() => {
-
                     let cart_items = [...cartItems.items]
                     cart_items.splice(index, 1);
                    
