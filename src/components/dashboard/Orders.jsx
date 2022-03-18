@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import TablePagination from '@mui/material/TablePagination';
 
 import { Link } from "react-router-dom";
 import './Orders.scss';
@@ -17,9 +18,23 @@ import './Orders.scss';
 const Orders = () => {
     const {orders} = React.useContext(OrderContext)
     //console.table(orders)
+    const [page,setPage] = React.useState(0);
+    const [rowsPerPage,setRowsPerPage] = React.useState(5);
+    const handleChangePage = (event,newPage) => {
+        setPage(newPage);
+    }
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value,10));
+        setPage(0);
+    };
+    
+    const emptyRows = rowsPerPage - Math.min(
+        rowsPerPage, orders.length - page * rowsPerPage
+        );
+
     const OrderList = (props) => {
         const order = props.order;
-        const i = props.i
+        const index = props.index
         return (
             // <div  className={'order-list'}>
             //     <span > {order.full_name}</span>
@@ -39,7 +54,7 @@ const Orders = () => {
           
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-                <TableCell >{i}</TableCell>
+                <TableCell >{index}</TableCell>
                 <TableCell >{order.full_name}</TableCell>
                 <TableCell >{order.city}</TableCell>
                 <TableCell >{order.total_paid}</TableCell>
@@ -65,10 +80,26 @@ const Orders = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {orders.map((order, i) => (<OrderList key={order.order_key} i={i} order={order} />))}
+                    {orders
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((order, i) => (<OrderList key={order.order_key} index={(page * rowsPerPage)+i+1} order={order} />))}
+
+                {emptyRows > 0 && (
+                            <TableRow style={{ height: 72 * emptyRows }}>
+                            <TableCell colSpan={6} />
+                            </TableRow>
+                        )}
                 </TableBody>
             </Table>
-            
+            <TablePagination
+                rowsPerPageOptions={[5, 10, 25, 50]}
+                component="div"
+                count={orders.length}
+                page={page}
+                onPageChange={handleChangePage}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            />
         </TableContainer>
         // <table className={'order-list'}>
         //     <thead>
