@@ -60,7 +60,7 @@ const Orders = () => {
                         <TableCell >Ordered as</TableCell>
                         <TableCell >Location</TableCell>
                         <TableCell >Total</TableCell>
-                        <TableCell >Location</TableCell>
+                        <TableCell >Status</TableCell>
                         <TableCell >Details</TableCell>
                     </TableRow>
                 </TableHead>
