@@ -36,20 +36,7 @@ const Orders = () => {
         const order = props.order;
         const index = props.index
         return (
-            // <div  className={'order-list'}>
-            //     <span > {order.full_name}</span>
-            //     <span > {order.city}</span>
-            //     <span > {order.total_paid}</span>
-            // </div>
-
-            // <tr>
-            //     <td>{i}</td>
-            //     <td>{order.full_name}</td>
-            //     <td>{order.city}</td>
-            //     <td>{order.total_paid}</td>
-            //     <td>Pending</td>
-            //     <td>View</td>
-            // </tr>
+        
             <TableRow
           
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -101,21 +88,7 @@ const Orders = () => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
         </TableContainer>
-        // <table className={'order-list'}>
-        //     <thead>
-        //         <tr>
-        //             <th>SL</th>
-        //             <th>Ordered as</th>
-        //             <th>Location</th>
-        //             <th>Total</th>
-        //             <th>Status</th>
-        //             <th>Details</th>
-        //         </tr>
-        //     </thead>
-        //     <tbody>
-        //         {orders.map((order, i) => (<OrderList key={order.order_key} i={i} order={order} />))}
-        //     </tbody>
-        // </table>
+  
     );
 }
 

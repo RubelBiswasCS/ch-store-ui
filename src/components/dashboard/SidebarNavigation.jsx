@@ -13,8 +13,12 @@ import ManageAccountsRoundedIcon from '@mui/icons-material/ManageAccountsRounded
 import BuildIcon from '@mui/icons-material/Build';
 
 import Typography from '@mui/material/Typography';
+import {Link as RRDLink} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
+
 
 import './Dashboard.scss';
+
 
 const navLinks = ['Overview','Orders','Messages','Notifications','Profile','Settings','Help'];
 const NavItem = ({children}) => {
@@ -46,6 +50,7 @@ const SidebarNavigation = () => {
     const [display, setDisplay] = React.useState({
         display:'',
     });
+    const navigate = useNavigate();
     const handleDisplay = (e) => {
             e.preventDefault();
             console.log('just clicked')
@@ -76,7 +81,7 @@ const SidebarNavigation = () => {
                         <BtnText display={display}><Typography>Overview</Typography></BtnText>
                     </NavButton>
 
-                    <NavButton onClick={() => {console.log("clicked")}}>
+                    <NavButton onClick={() => {navigate('/dashboard/orders')}}>
                         <BtnIcon><LocalMallRoundedIcon  /></BtnIcon>
                         <BtnText display={display}><Typography>Orders</Typography></BtnText>
                     </NavButton>
