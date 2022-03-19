@@ -37,9 +37,17 @@ export default function SignIn() {
 				password: data.get('password'),
 			})
 			.then((res) => {
+        
 				localStorage.setItem('access_token', res.data.access);
 				localStorage.setItem('refresh_token', res.data.refresh);
-        localStorage.setItem('username', 'username');
+        let refresh = res.data.refresh;
+        let userData =  JSON.parse(atob(refresh.split('.')[1]));
+        console.log(refresh)
+        const user = {
+          name:userData.name,
+          is_staff:userData.is_staff
+        }
+        localStorage.setItem('user', JSON.stringify(user));
 				axiosInstance.defaults.headers['Authorization'] =
 					'JWT ' + localStorage.getItem('access_token');
        

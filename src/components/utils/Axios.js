@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(
         }
         if (error.response.status === 401 &&
             originalRequest.url === '/token/refresh/') {
-            localStorage.setItem('username', '');
+            localStorage.setItem('user', '');
             window.location.href = '/signin/';
             return Promise.reject(error);
         }

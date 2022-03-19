@@ -79,12 +79,12 @@ const Main = () => {
     }, [setAppState]);
     
     useEffect(() => {
-        let username = localStorage.getItem('username');
-        if (username === null){
-            username = '';
+        let user = localStorage.getItem('user');
+        if (user === null){
+            user = '';
         }
-        //console.log('username: ',username,username.length)
-        if(username.length !== 0){
+        //console.log('user: ',user,user.length)
+        if(user.length !== 0){
             axiosInstance.get('cart/').then(result => {
                 const cartData = result.data;
                 

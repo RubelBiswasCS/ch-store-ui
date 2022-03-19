@@ -69,6 +69,15 @@ const Header = (props) => {
     setOpen(false);
     //console.log("set open fired: ",open)
   };
+  const [userData,setUserData] = React.useState([])
+  React.useEffect(() => {
+    let data = localStorage.getItem('user')
+    if(data) {
+      setUserData(JSON.parse(data))
+    }
+  },[setUserData])
+  
+  console.log("user name on cart loaded",userData.name,userData.is_staff)
   return (
     <AppBar  style={{backgroundColor:"#2ab7ca"}} position="static">
       <Container maxWidth="xl">
@@ -119,11 +128,13 @@ const Header = (props) => {
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
+            {(userData !==null && userData.is_staff === false)
+              ?
             <Box sx={{display:'flex'}} onClick={handleCartOpen}>
               <ShoppingCartTwoToneIcon/>
               <Typography variant="caption" sx={{fontSize:'.5em'}}>{cartItems.length}</Typography>
-              
             </Box>
+            :null}
             
             <Menu
               sx={{ mt: '45px' }}
@@ -157,8 +168,9 @@ const Header = (props) => {
           
           
         </Toolbar>
-        
         <Cart cartItems={props.cartItems} incrementQty={props.incrementQty} decrementQty={props.decrementQty} removeCartItem={props.removeCartItem} anchorEl={anchorEl} open={open} handleClickAway={handleClickAway}/>
+        
+       
     </Container>
     </AppBar>
     
