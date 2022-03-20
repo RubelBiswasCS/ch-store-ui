@@ -36,12 +36,12 @@ const Main = () => {
     const [orders,setOrders] = useState([]);
   
     useEffect(() => {
-        let username = localStorage.getItem('username');
-        if (username === null){
-            username = '';
+        let user = localStorage.getItem('user');
+        if (user === null){
+            user = '';
         }
-        //console.log('username: ',username,username.length)
-        if(username.length !== 0){
+        //console.log('user: ',user,user.length)
+        if(user.length !== 0){
         const orderUrl = "http://localhost:8000/api/getorder";
         axiosInstance.get(orderUrl)
         .then( response => {

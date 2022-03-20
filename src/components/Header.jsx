@@ -14,9 +14,11 @@ import {Link as RRDLink} from "react-router-dom";
 import { flexCenter } from './styleJsx/style';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import Cart from "./cart/Cart";
+import CssBaseline from '@mui/material/CssBaseline';
+import './Header.scss';
 
 //const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['profile', 'orders', 'dashboard', 'signout'];
+const settings = ['profile', 'orders', 'dashboard', 'signout','signin'];
 const options = [
       {
         name:'profile',
@@ -30,10 +32,7 @@ const options = [
         name:'dashboard',
         url:'dashboard',
       },
-      {
-        name:'signout',
-        url:'signout',
-      },
+     
     ]
 const Header = (props) => {
 
@@ -77,9 +76,11 @@ const Header = (props) => {
     }
   },[setUserData])
   
-  console.log("user name on cart loaded",userData.name,userData.is_staff)
+  console.log("user name on cart loaded",userData.name,userData.is_staff,userData,typeof(userData))
   return (
-    <AppBar  style={{backgroundColor:"#2ab7ca"}} position="static">
+    <>
+  
+    <AppBar  className={'app-bar'} position="static">
       <Container maxWidth="xl">
         <Toolbar >
           <Typography
@@ -122,7 +123,7 @@ const Header = (props) => {
           </Typography>
          
 
-          <Box sx={{ flexGrow: 0,ml:'auto',display:'flex',gap:'15px' }}>
+          <Box sx={{ flexGrow: 0,ml:'auto',display:'flex',alignItems:'center',gap:'15px',cursor:'pointer' }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}  sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -130,10 +131,12 @@ const Header = (props) => {
             </Tooltip>
             {(userData !==null && userData.is_staff === false)
               ?
+            <Tooltip title="Open Cart">
             <Box sx={{display:'flex'}} onClick={handleCartOpen}>
               <ShoppingCartTwoToneIcon/>
               <Typography variant="caption" sx={{fontSize:'.5em'}}>{cartItems.length}</Typography>
             </Box>
+            </Tooltip>
             :null}
             
             <Menu
@@ -157,11 +160,17 @@ const Header = (props) => {
               {options.map((setting) => (
                 <MenuItem key={setting.name} onClick={handleCloseNavMenu}>
                   
+                  
                   <RRDLink to={'/'+setting.url}><Typography textAlign="center">{setting.name.toUpperCase()}</Typography></RRDLink>
                   
                
                 </MenuItem>
               ))}
+                <MenuItem onClick={handleCloseNavMenu}>
+                  {(userData === null || userData.length === 0 || typeof(userData) === undefined)
+                  ?<RRDLink to={'/'+'signin'}><Typography textAlign="center">{'signin'.toUpperCase()}</Typography></RRDLink>
+                  :<RRDLink to={'/'+"signout"}><Typography textAlign="center">{'logout'.toUpperCase()}</Typography></RRDLink>}
+                </MenuItem>
             </Menu>
             
           </Box>
@@ -173,7 +182,7 @@ const Header = (props) => {
        
     </Container>
     </AppBar>
-    
+    </>
   );
 };
 export default Header;

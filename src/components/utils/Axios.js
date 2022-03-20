@@ -70,7 +70,7 @@ axiosInstance.interceptors.response.use(
                 }
                 else {
                     console.log('Refresh Token is expired');
-                    localStorage.setItem('username', '');
+                    localStorage.setItem('user', '');
                     window.location.href = '/signin/';
                 }
             }
