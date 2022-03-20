@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import Header from "./Header";
 import Footer from "./Footer";
 import Home from "./Home";
@@ -6,7 +7,7 @@ import Home from "./Home";
 // import axiosInstance from '../Axios';
 import axiosInstance from './utils/Axios';
 import { useState,useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ProductDetails from './product/ProductDetail';
 import SignIn from "./auth/signin";
 import Signout from "./auth/signout";
@@ -19,6 +20,8 @@ import Orders from "./dashboard/Orders";
 import SingleOrder from "./dashboard/SingleOrder";
 
 import OrderContext from "../Context/OrderContext";
+import UserContext from '../Context/UserContext';
+
 const Main = () => {
 
     const [appState, setAppState] = useState({
@@ -26,15 +29,34 @@ const Main = () => {
         products: null,
     });
 
-   
-
     const [cartItems, setCartItems] = useState({
         loading: true,
         items: [],
         total:0,
     });
+    const [userState,setUserState] = useState({
+        name:'',
+        is_staff:'false'
+    });
+
+    useEffect(() => {
+        let userData = JSON.parse(localStorage.getItem('user')) || false;
+         
+        if (userData){
+            let name = userData.name
+            let is_staff = userData.is_staff
+            setUserState({
+                name:name || '',
+                is_staff:is_staff || false
+            });
+        }
+      
+       
+    },[setUserState]);
+
+    console.log("user state at main file is: ",userState.name,userState.is_staff)
     const [orders,setOrders] = useState([]);
-  
+
     useEffect(() => {
         let user = localStorage.getItem('user');
         if (user === null){
@@ -101,6 +123,8 @@ const Main = () => {
         
     }, [setCartItems]);
     
+    
+
     const handleAddToCart = (e, product, qty) => {
 
         e.preventDefault();
@@ -241,7 +265,11 @@ const Main = () => {
         }
         
     }
-
+    const PrivateRoute = (props) => {
+        const {Component} = props;
+        console.log("user state name in private route",userState.name)
+        return (userState.name === '')?<Navigate to='/signin'/>:<Component/>
+    }
     return (
         <React.Fragment>
             
@@ -256,7 +284,7 @@ const Main = () => {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/testcart" element={<TestCart />} />
                
-                <Route path="/dashboard" element={<Dashboard />}>
+                <Route path="/dashboard" element={<PrivateRoute Component={Dashboard}/>}>
                    
                         <Route index element={<DashboardHome />} />
                         <Route path="orders" element={<Orders />} />
